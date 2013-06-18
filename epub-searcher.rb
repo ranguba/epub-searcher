@@ -46,16 +46,19 @@ def show_html_content(io)
   puts content.text
 end
 
+def show_main_text(epub_filename, uris)
+  Zip::Archive.open(epub_filename) do |files|
+    entry_name_array = order_by_spine(files, uris)
+    show_html_contents(files, entry_name_array)
+  end
+end
+
 def open_epub(filename)
   epub_book = EPUB::Parser.parse(filename)
   metadata = epub_book.metadata
 
   uris = extract_xhtml_uris(epub_book)
-  
-  Zip::Archive.open(filename) do |files|
-    entry_name_array = order_by_spine(files, uris)
-    show_html_contents(files, entry_name_array)
-  end
+  show_main_text(filename, uris)
 end
 
 if ARGV.count < 1
