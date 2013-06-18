@@ -16,13 +16,7 @@ def extract_xhtml_uris(epub_book)
   return uris
 end
 
-def open_epub(filename)
-  epub_book = EPUB::Parser.parse(filename)
-  metadata = epub_book.metadata
-
-  uris = extract_xhtml_uris(epub_book)
-  
-  Zip::Archive.open(filename) do |files|
+def order_by_spine(files, uris)
     entry_name_array = Array.new(uris.size)
     files.num_files.times do |i|
       zip_entry_name = files.get_name(i)
@@ -36,6 +30,17 @@ def open_epub(filename)
         entry_name_array[index] = zip_entry_name
       end
     end
+  return entry_name_array
+end
+
+def open_epub(filename)
+  epub_book = EPUB::Parser.parse(filename)
+  metadata = epub_book.metadata
+
+  uris = extract_xhtml_uris(epub_book)
+  
+  Zip::Archive.open(filename) do |files|
+    entry_name_array = order_by_spine(files, uris)
 
     # 整列したファイルを順繰りに読み込み、パースする
     entry_name_array.each do |entry_name|
