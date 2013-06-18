@@ -34,7 +34,6 @@ def order_by_spine(files, uris)
 end
 
 def show_html_contents(files, entry_name_array)
-  # 整列したファイルを順繰りに読み込み、パースする
   entry_name_array.each do |entry_name|
     files.fopen(entry_name) do |io|
       show_html_content(io)
