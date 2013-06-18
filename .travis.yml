@@ -1,0 +1,5 @@
+notifications:
+  recipients:
+    - groonga-commit@rubyforge.org
+rvm:
+  - 2.0.0
