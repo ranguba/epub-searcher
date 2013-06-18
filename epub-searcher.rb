@@ -41,6 +41,11 @@ def show_html_contents(files, entry_name_array)
   end
 end
 
+def show_html_content(io)
+  content = Nokogiri::HTML(io)
+  puts content.text
+end
+
 def open_epub(filename)
   epub_book = EPUB::Parser.parse(filename)
   metadata = epub_book.metadata
@@ -51,11 +56,6 @@ def open_epub(filename)
     entry_name_array = order_by_spine(files, uris)
     show_html_contents(files, entry_name_array)
   end
-end
-
-def show_html_content(io)
-  content = Nokogiri::HTML(io)
-  puts content.text
 end
 
 if ARGV.count < 1
