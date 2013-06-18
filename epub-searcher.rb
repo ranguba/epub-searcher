@@ -3,12 +3,9 @@
 require 'bundler'
 Bundler.require
 
-def open_epub(filename)
+def extract_xhtml_uri_array(epub_book)
   uri_array = Array.new
-  epub_book = EPUB::Parser.parse(filename)
-  metadata = epub_book.metadata
 
-  # xhtml ドキュメントがどの順番で出てくるか記録する
   epub_book.each_page_on_spine do |item|
     if item.media_type == "application/xhtml+xml"
       uri = item.href
@@ -16,6 +13,15 @@ def open_epub(filename)
     end
   end
 
+  return uri_array
+end
+
+def open_epub(filename)
+  epub_book = EPUB::Parser.parse(filename)
+  metadata = epub_book.metadata
+
+  uri_array = extract_xhtml_uri_array(epub_book)
+  
   Zip::Archive.open(filename) do |files|
     entry_name_array = Array.new(uri_array.size)
     files.num_files.times do |i|
