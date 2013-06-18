@@ -16,13 +16,18 @@ def extract_spine(epub_book)
   return spine
 end
 
+def find_item_index(spine, zip_entry_name)
+    base_zip_entry_name = File::basename(zip_entry_name)
+    index = spine.index(base_zip_entry_name)
+    return index
+end
+
 def order_by_spine(files, spine)
   entry_name_array = Array.new(spine.size)
   files.num_files.times do |i|
     zip_entry_name = files.get_name(i)
 
-    base_zip_entry_name = File::basename(zip_entry_name)
-    index = spine.index(base_zip_entry_name)
+    index = find_item_index(spine, zip_entry_name)
     if index
       entry_name_array[index] = zip_entry_name
     end
