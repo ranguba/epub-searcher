@@ -41,7 +41,6 @@ def open_epub(filename)
 end
 
 def show_html_content(io)
-  # Nokogiri でパースし、内部テキストを出力する
   content = Nokogiri::HTML(io)
   puts content.text
 end
