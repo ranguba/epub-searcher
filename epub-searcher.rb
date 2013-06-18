@@ -48,8 +48,8 @@ end
 
 def show_main_text(epub_filename, uris)
   Zip::Archive.open(epub_filename) do |files|
-    entry_name_array = order_by_spine(files, uris)
-    show_html_contents(files, entry_name_array)
+    entry_names = order_by_spine(files, uris)
+    show_html_contents(files, entry_names)
   end
 end
 
