@@ -3,26 +3,26 @@
 require 'bundler'
 Bundler.require
 
-def extract_xhtml_basenames(epub_book)
-  basenames = Array.new
+def extract_spine(epub_book)
+  spine = Array.new
 
   epub_book.each_page_on_spine do |item|
     if item.media_type == "application/xhtml+xml"
       basename = item.href
-      basenames << basename.to_s
+      spine << basename.to_s
     end
   end
 
-  return basenames
+  return spine
 end
 
-def order_by_spine(files, basenames)
-  entry_name_array = Array.new(basenames.size)
+def order_by_spine(files, spine)
+  entry_name_array = Array.new(spine.size)
   files.num_files.times do |i|
     zip_entry_name = files.get_name(i)
 
     base_zip_entry_name = File::basename(zip_entry_name)
-    index = basenames.index(base_zip_entry_name)
+    index = spine.index(base_zip_entry_name)
     if index
       entry_name_array[index] = zip_entry_name
     end
@@ -43,9 +43,9 @@ def show_html_content(io)
   puts content.text
 end
 
-def show_main_text(epub_filename, basenames)
+def show_main_text(epub_filename, spine)
   Zip::Archive.open(epub_filename) do |files|
-    entry_names = order_by_spine(files, basenames)
+    entry_names = order_by_spine(files, spine)
     show_html_contents(files, entry_names)
   end
 end
@@ -54,8 +54,8 @@ def open_epub(filename)
   epub_book = EPUB::Parser.parse(filename)
   metadata = epub_book.metadata
 
-  basenames = extract_xhtml_basenames(epub_book)
-  show_main_text(filename, basenames)
+  spine = extract_spine(epub_book)
+  show_main_text(filename, spine)
 end
 
 if ARGV.count < 1
