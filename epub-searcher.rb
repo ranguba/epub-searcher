@@ -3,7 +3,7 @@
 require 'bundler'
 Bundler.require
 
-def extract_spine(epub_book)
+def extract_xhtml_spine(epub_book)
   spine = Array.new
 
   epub_book.each_page_on_spine do |item|
@@ -59,7 +59,7 @@ def open_epub(filename)
   epub_book = EPUB::Parser.parse(filename)
   metadata = epub_book.metadata
 
-  spine = extract_spine(epub_book)
+  spine = extract_xhtml_spine(epub_book)
   show_main_text(filename, spine)
 end
 
