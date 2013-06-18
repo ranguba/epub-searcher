@@ -1,12 +1,16 @@
 module EPUBSearcher
   class EPUBDocument
-    def extract_author(epub_book)
-      metadata = epub_book.metadata
+    def initialize(epub_book)
+      @epub_book = epub_book
+    end
+
+    def extract_author
+      metadata = @epub_book.metadata
       return metadata.author
     end
 
-    def extract_title(epub_book)
-      metadata = epub_book.metadata
+    def extract_title
+      metadata = @epub_book.metadata
       return metadata.title
     end
   end
