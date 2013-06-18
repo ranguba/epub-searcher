@@ -3,35 +3,35 @@
 require 'bundler'
 Bundler.require
 
-def extract_xhtml_uri_array(epub_book)
-  uri_array = Array.new
+def extract_xhtml_uris(epub_book)
+  uris = Array.new
 
   epub_book.each_page_on_spine do |item|
     if item.media_type == "application/xhtml+xml"
       uri = item.href
-      uri_array << uri.to_s
+      uris << uri.to_s
     end
   end
 
-  return uri_array
+  return uris
 end
 
 def open_epub(filename)
   epub_book = EPUB::Parser.parse(filename)
   metadata = epub_book.metadata
 
-  uri_array = extract_xhtml_uri_array(epub_book)
+  uris = extract_xhtml_uris(epub_book)
   
   Zip::Archive.open(filename) do |files|
-    entry_name_array = Array.new(uri_array.size)
+    entry_name_array = Array.new(uris.size)
     files.num_files.times do |i|
       zip_entry_name = files.get_name(i)
 
-      # uri_array 内のファイル名は basename になっているので、
+      # uris 内のファイル名は basename になっているので、
       # 解答して出てきたファイル名と比較し、
       # 順番通りにファイル名を整列する
       base_zip_entry_name = File::basename(zip_entry_name)
-      index = uri_array.index(base_zip_entry_name)
+      index = uris.index(base_zip_entry_name)
       if index
         entry_name_array[index] = zip_entry_name
       end
