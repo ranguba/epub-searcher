@@ -17,19 +17,19 @@ def extract_xhtml_uris(epub_book)
 end
 
 def order_by_spine(files, uris)
-    entry_name_array = Array.new(uris.size)
-    files.num_files.times do |i|
-      zip_entry_name = files.get_name(i)
+  entry_name_array = Array.new(uris.size)
+  files.num_files.times do |i|
+    zip_entry_name = files.get_name(i)
 
-      # uris 内のファイル名は basename になっているので、
-      # 解答して出てきたファイル名と比較し、
-      # 順番通りにファイル名を整列する
-      base_zip_entry_name = File::basename(zip_entry_name)
-      index = uris.index(base_zip_entry_name)
-      if index
-        entry_name_array[index] = zip_entry_name
-      end
+    # uris 内のファイル名は basename になっているので、
+    # 解答して出てきたファイル名と比較し、
+    # 順番通りにファイル名を整列する
+    base_zip_entry_name = File::basename(zip_entry_name)
+    index = uris.index(base_zip_entry_name)
+    if index
+      entry_name_array[index] = zip_entry_name
     end
+  end
   return entry_name_array
 end
 
