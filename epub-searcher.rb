@@ -17,9 +17,9 @@ def extract_spine(epub_book)
 end
 
 def find_item_index(spine, zip_entry_name)
-    base_zip_entry_name = File::basename(zip_entry_name)
-    index = spine.index(base_zip_entry_name)
-    return index
+  base_zip_entry_name = File::basename(zip_entry_name)
+  index = spine.index(base_zip_entry_name)
+  return index
 end
 
 def order_by_spine(files, spine)
