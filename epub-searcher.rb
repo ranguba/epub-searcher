@@ -21,8 +21,6 @@ def order_by_spine(files, basenames)
   files.num_files.times do |i|
     zip_entry_name = files.get_name(i)
 
-    # 解答して出てきたファイル名と比較し、
-    # 順番通りにファイル名を整列する
     base_zip_entry_name = File::basename(zip_entry_name)
     index = basenames.index(base_zip_entry_name)
     if index
