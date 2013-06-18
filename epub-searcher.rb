@@ -33,6 +33,15 @@ def order_by_spine(files, uris)
   return entry_name_array
 end
 
+def show_html_contents(files, entry_name_array)
+    # 整列したファイルを順繰りに読み込み、パースする
+    entry_name_array.each do |entry_name|
+      files.fopen(entry_name) do |io|
+        show_html_content(io)
+      end
+    end
+end
+
 def open_epub(filename)
   epub_book = EPUB::Parser.parse(filename)
   metadata = epub_book.metadata
@@ -41,13 +50,7 @@ def open_epub(filename)
   
   Zip::Archive.open(filename) do |files|
     entry_name_array = order_by_spine(files, uris)
-
-    # 整列したファイルを順繰りに読み込み、パースする
-    entry_name_array.each do |entry_name|
-      files.fopen(entry_name) do |io|
-        show_html_content(io)
-      end
-    end
+    show_html_contents(files, entry_name_array)
   end
 end
 
