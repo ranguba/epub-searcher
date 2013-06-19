@@ -11,7 +11,7 @@ class TestEPUBDocument < Test::Unit::TestCase
     @document = EPUBSearcher::EPUBDocument.new(epub_book)
   end
 
-  def text_extract_author
+  def test_extract_author
     assert_equal("groonga", @document.extract_author)
   end
 
@@ -19,7 +19,7 @@ class TestEPUBDocument < Test::Unit::TestCase
     assert_equal("groongaについて", @document.extract_title)
   end
 
-  def text_extract_xhtml_spine
+  def test_extract_xhtml_spine
     assert_equal(["OEBPS/item0001.xhtml"], @document.extract_xhtml_spine)
   end
 
