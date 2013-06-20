@@ -38,7 +38,7 @@ EOS
     assert_equal(define_schema_str, document.create_groonga_cmd_define_schema)
   end
 
-  class TestContributors
+  class TestContributors < self
     def test_empty
       epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
