@@ -42,8 +42,8 @@ EOS
     def setup
       # groonga_doc_all.epub ... spine を一つしか含まない EPUB ファイル
       #                          本文は groonga ドキュメント 1 章 が全て入っている
-      epub_book_1 = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
-      @document = EPUBSearcher::EPUBDocument.new(epub_book_1)
+      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
+      @document = EPUBSearcher::EPUBDocument.new(epub_book)
     end
 
     def test_extract_contributors
