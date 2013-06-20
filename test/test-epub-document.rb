@@ -7,6 +7,37 @@ require 'epub-searcher/epub-document'
 
 class TestEPUBDocument < Test::Unit::TestCase
 
+  def assert_equal_contributors(expected, document)
+    assert_equal(expected, document.extract_contributors)
+  end
+
+  def assert_equal_creators(expected, document)
+    assert_equal(expected, document.extract_creators)
+  end
+
+  def assert_equal_title(expected, document)
+    assert_equal(expected, document.extract_title)
+  end
+
+  def assert_equal_main_text(expected_file, document)
+    expected_text = File.read(fixture_path(expected_file))
+    assert_equal(expected_text, document.extract_main_text)
+  end
+
+  def assert_equal_xhtml_spine(expected, document)
+    assert_equal(expected, document.extract_xhtml_spine)
+  end
+
+  def assert_equal_groonga_cmd_define_schema(document)
+    define_schema_str = <<EOS
+table_create Books TABLE_HASH_KEY ShortText
+column_create Books author COLUMN_SCALAR ShortText
+column_create Books main_text COLUMN_SCALAR LongText
+column_create Books title COLUMN_SCALAR ShortText
+EOS
+    assert_equal(define_schema_str, document.create_groonga_cmd_define_schema)
+  end
+
   class TestSingleSpine < self
     def setup
       # groonga_doc_all.epub ... spine を一つしか含まない EPUB ファイル
@@ -16,34 +47,27 @@ class TestEPUBDocument < Test::Unit::TestCase
     end
 
     def test_extract_contributors
-      assert_equal([], @document_1.extract_contributors)
+      assert_equal_contributors([], @document_1)
     end
 
     def test_extract_creators
-      assert_equal(["groonga"], @document_1.extract_creators)
+      assert_equal_creators(["groonga"], @document_1)
     end
 
     def test_extract_title
-      assert_equal("groongaについて", @document_1.extract_title)
+      assert_equal_title("groongaについて", @document_1)
     end
 
     def test_main_text
-      doc_all_expected_text = File.read(fixture_path("groonga_doc_all_main_text_expected.txt"))
-      assert_equal(doc_all_expected_text, @document_1.extract_main_text)
+      assert_equal_main_text("groonga_doc_all_main_text_expected.txt", @document_1)
     end
 
     def test_extract_xhtml_spine
-      assert_equal(["OEBPS/item0001.xhtml"], @document_1.extract_xhtml_spine)
+      assert_equal_xhtml_spine(["OEBPS/item0001.xhtml"], @document_1)
     end
 
     def test_create_groonga_cmd_define_schema
-      define_schema_str = <<EOS
-table_create Books TABLE_HASH_KEY ShortText
-column_create Books author COLUMN_SCALAR ShortText
-column_create Books main_text COLUMN_SCALAR LongText
-column_create Books title COLUMN_SCALAR ShortText
-EOS
-      assert_equal(define_schema_str, @document_1.create_groonga_cmd_define_schema)
+      assert_equal_groonga_cmd_define_schema(@document_1)
     end
   end
 
@@ -56,34 +80,27 @@ EOS
     end
 
     def test_extract_contributors
-      assert_equal(["groongaコミュニティ A", "groongaコミュニティ B", "groongaコミュニティ C"], @document_2.extract_contributors)
+      assert_equal_contributors(["groongaコミュニティ A", "groongaコミュニティ B", "groongaコミュニティ C"], @document_2)
     end
 
     def test_extract_creators
-      assert_equal(["groongaプロジェクト"], @document_2.extract_creators)
+      assert_equal_creators(["groongaプロジェクト"], @document_2)
     end
 
     def test_extract_title
-      assert_equal("groongaについて", @document_2.extract_title)
+      assert_equal_title("groongaについて", @document_2)
     end
 
     def test_main_text
-      doc_11_12_expected_text = File.read(fixture_path("groonga_doc_11_12_main_text_expected.txt"))
-      assert_equal(doc_11_12_expected_text, @document_2.extract_main_text)
+      assert_equal_main_text("groonga_doc_11_12_main_text_expected.txt", @document_2)
     end
 
     def test_extract_xhtml_spine
-      assert_equal(["item0001.xhtml", "item0002.xhtml"], @document_2.extract_xhtml_spine)
+      assert_equal_xhtml_spine(["item0001.xhtml", "item0002.xhtml"], @document_2)
     end
 
     def test_create_groonga_cmd_define_schema
-      define_schema_str = <<EOS
-table_create Books TABLE_HASH_KEY ShortText
-column_create Books author COLUMN_SCALAR ShortText
-column_create Books main_text COLUMN_SCALAR LongText
-column_create Books title COLUMN_SCALAR ShortText
-EOS
-      assert_equal(define_schema_str, @document_2.create_groonga_cmd_define_schema)
+      assert_equal_groonga_cmd_define_schema(@document_2)
     end
   end
 
