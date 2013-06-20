@@ -75,8 +75,8 @@ EOS
     def setup
       # groonga_doc_11_12.epub ... spine を二つ含む EPUB ファイル
       #                            本文は groonga ドキュメント 1.1 と 1.2 が入っている
-      epub_book_2 = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
-      @document = EPUBSearcher::EPUBDocument.new(epub_book_2)
+      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
+      @document = EPUBSearcher::EPUBDocument.new(epub_book)
     end
 
     def test_extract_contributors
