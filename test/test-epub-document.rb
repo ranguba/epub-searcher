@@ -61,6 +61,8 @@ EOS
 
   class TestSpine < self
     def test_single
+      # groonga_doc_all.epub ... spine を一つしか含まない EPUB ファイル
+      #                          本文は groonga ドキュメント 1 章 が全て入っている
       epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
       document = EPUBSearcher::EPUBDocument.new(epub_book)
 
@@ -69,6 +71,8 @@ EOS
     end
 
     def test_multiple
+      # groonga_doc_11_12.epub ... spine を二つ含む EPUB ファイル
+      #                            本文は groonga ドキュメント 1.1 と 1.2 が入っている
       epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
       document = EPUBSearcher::EPUBDocument.new(epub_book)
 
@@ -79,8 +83,6 @@ EOS
 
   class TestSingleSpine < self
     def setup
-      # groonga_doc_all.epub ... spine を一つしか含まない EPUB ファイル
-      #                          本文は groonga ドキュメント 1 章 が全て入っている
       epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
     end
@@ -100,8 +102,6 @@ EOS
 
   class TestMultipleSpine < self
     def setup
-      # groonga_doc_11_12.epub ... spine を二つ含む EPUB ファイル
-      #                            本文は groonga ドキュメント 1.1 と 1.2 が入っている
       epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
     end
