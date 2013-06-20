@@ -81,18 +81,30 @@ EOS
     end
   end
 
+  class TestExtracts < self
+    def setup
+      epub_book_doc_all = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
+      @document_all = EPUBSearcher::EPUBDocument.new(epub_book_doc_all)
+
+      epub_book_doc_11_12 = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
+      @document_11_12 = EPUBSearcher::EPUBDocument.new(epub_book_doc_11_12)
+    end
+
+    def test_creators
+      assert_equal_creators(["groonga"], @document_all)
+      assert_equal_creators(["groongaプロジェクト"], @document_11_12)
+    end
+
+    def test_title
+      assert_equal_title("groongaについて", @document_all)
+      assert_equal_title("groongaについて", @document_11_12)
+    end
+  end
+
   class TestSingleSpine < self
     def setup
       epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
-    end
-
-    def test_extract_creators
-      assert_equal_creators(["groonga"], @document)
-    end
-
-    def test_extract_title
-      assert_equal_title("groongaについて", @document)
     end
 
     def test_create_groonga_cmd_define_schema
@@ -104,14 +116,6 @@ EOS
     def setup
       epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
-    end
-
-    def test_extract_creators
-      assert_equal_creators(["groongaプロジェクト"], @document)
-    end
-
-    def test_extract_title
-      assert_equal_title("groongaについて", @document)
     end
 
     def test_create_groonga_cmd_define_schema
