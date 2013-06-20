@@ -40,20 +40,20 @@ EOS
 
   class TestContributors < self
     def test_empty
-      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
+      epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
       assert_equal_contributors([], @document)
     end
 
     def test_single
-      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
+      epub_book = EPUB::Parser.parse(fixture_path('single_contributors_multi_spine.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
       assert_equal_contributors(["groongaコミュニティ"], @document)
     end
 
     def test_multiple
-      # groonga_doc_11_12_multi_contributors.epub ... groonga_doc_11_12.epub に contributors を複数持たせたもの
-      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12_multi_contributors.epub'))
+      # multi_contributors_multi_spine.epub ... single_contributors_multi_spine.epub に contributors を複数持たせたもの
+      epub_book = EPUB::Parser.parse(fixture_path('multi_contributors_multi_spine.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
       assert_equal_contributors(["groongaコミュニティ A", "groongaコミュニティ B", "groongaコミュニティ C"], @document)
     end
@@ -61,32 +61,32 @@ EOS
 
   class TestSpine < self
     def test_single
-      # groonga_doc_all.epub ... spine を一つしか含まない EPUB ファイル
+      # empty_contributors_single_spine.epub ... spine を一つしか含まない EPUB ファイル
       #                          本文は groonga ドキュメント 1 章 が全て入っている
-      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
+      epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       document = EPUBSearcher::EPUBDocument.new(epub_book)
 
       assert_equal_xhtml_spine(["OEBPS/item0001.xhtml"], document)
-      assert_equal_main_text("groonga_doc_all_main_text_expected.txt", document)
+      assert_equal_main_text("empty_contributors_single_spine_main_text_expected.txt", document)
     end
 
     def test_multiple
-      # groonga_doc_11_12.epub ... spine を二つ含む EPUB ファイル
+      # single_contributors_multi_spine.epub ... spine を二つ含む EPUB ファイル
       #                            本文は groonga ドキュメント 1.1 と 1.2 が入っている
-      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
+      epub_book = EPUB::Parser.parse(fixture_path('single_contributors_multi_spine.epub'))
       document = EPUBSearcher::EPUBDocument.new(epub_book)
 
-      assert_equal_main_text("groonga_doc_11_12_main_text_expected.txt", document)
+      assert_equal_main_text("single_contributors_multi_spine_main_text_expected.txt", document)
       assert_equal_xhtml_spine(["item0001.xhtml", "item0002.xhtml"], document)
     end
   end
 
   class TestExtracts < self
     def setup
-      epub_book_doc_all = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
+      epub_book_doc_all = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       @document_all = EPUBSearcher::EPUBDocument.new(epub_book_doc_all)
 
-      epub_book_doc_11_12 = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
+      epub_book_doc_11_12 = EPUB::Parser.parse(fixture_path('single_contributors_multi_spine.epub'))
       @document_11_12 = EPUBSearcher::EPUBDocument.new(epub_book_doc_11_12)
     end
 
@@ -103,10 +103,10 @@ EOS
 
   class TestCreateGroongaCmd < self
     def setup
-      epub_book_doc_all = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
+      epub_book_doc_all = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       @document_all = EPUBSearcher::EPUBDocument.new(epub_book_doc_all)
 
-      epub_book_doc_11_12 = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
+      epub_book_doc_11_12 = EPUB::Parser.parse(fixture_path('single_contributors_multi_spine.epub'))
       @document_11_12 = EPUBSearcher::EPUBDocument.new(epub_book_doc_11_12)
     end
 
