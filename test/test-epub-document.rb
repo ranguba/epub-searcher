@@ -33,6 +33,14 @@ class TestEPUBDocument < Test::Unit::TestCase
     assert_equal("groongaについて", @document_2.extract_title)
   end
 
+  def test_main_text
+    doc_all_expected_text = File.read(fixture_path("groonga_doc_all_main_text_expected.txt"))
+    assert_equal(doc_all_expected_text, @document_1.extract_main_text)
+
+    doc_11_12_expected_text = File.read(fixture_path("groonga_doc_11_12_main_text_expected.txt"))
+    assert_equal(doc_11_12_expected_text, @document_2.extract_main_text)
+  end
+
   def test_extract_xhtml_spine
     assert_equal(["OEBPS/item0001.xhtml"], @document_1.extract_xhtml_spine)
     assert_equal(["item0001.xhtml", "item0002.xhtml"], @document_2.extract_xhtml_spine)
