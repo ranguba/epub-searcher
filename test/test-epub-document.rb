@@ -7,6 +7,8 @@ require 'epub-searcher/epub-document'
 
 class TestEPUBDocument < Test::Unit::TestCase
   def setup
+    # groonga_doc_all.epub ... spine を一つしか含まない EPUB ファイル
+    #                          本文は groonga ドキュメント 1 章 が全て入っている
     epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
     @document = EPUBSearcher::EPUBDocument.new(epub_book)
   end
