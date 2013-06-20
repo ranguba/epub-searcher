@@ -48,13 +48,13 @@ EOS
     def test_single
       epub_book = EPUB::Parser.parse(fixture_path('single_contributors_multi_spine.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
-      assert_equal_contributors(["groongaコミュニティ"], @document)
+      assert_equal_contributors(['groongaコミュニティ'], @document)
     end
 
     def test_multiple
       epub_book = EPUB::Parser.parse(fixture_path('multi_contributors_multi_spine.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
-      assert_equal_contributors(["groongaコミュニティ A", "groongaコミュニティ B", "groongaコミュニティ C"], @document)
+      assert_equal_contributors(['groongaコミュニティ A', 'groongaコミュニティ B', 'groongaコミュニティ C'], @document)
     end
   end
 
@@ -63,16 +63,16 @@ EOS
       epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       document = EPUBSearcher::EPUBDocument.new(epub_book)
 
-      assert_equal_xhtml_spine(["OEBPS/item0001.xhtml"], document)
-      assert_equal_main_text("empty_contributors_single_spine_main_text_expected.txt", document)
+      assert_equal_xhtml_spine(['OEBPS/item0001.xhtml'], document)
+      assert_equal_main_text('empty_contributors_single_spine_main_text_expected.txt', document)
     end
 
     def test_multiple
       epub_book = EPUB::Parser.parse(fixture_path('single_contributors_multi_spine.epub'))
       document = EPUBSearcher::EPUBDocument.new(epub_book)
 
-      assert_equal_main_text("single_contributors_multi_spine_main_text_expected.txt", document)
-      assert_equal_xhtml_spine(["item0001.xhtml", "item0002.xhtml"], document)
+      assert_equal_main_text('single_contributors_multi_spine_main_text_expected.txt', document)
+      assert_equal_xhtml_spine(['item0001.xhtml', 'item0002.xhtml'], document)
     end
   end
 
@@ -83,11 +83,11 @@ EOS
     end
 
     def test_creators
-      assert_equal_creators(["groonga"], @document)
+      assert_equal_creators(['groonga'], @document)
     end
 
     def test_title
-      assert_equal_title("groongaについて", @document)
+      assert_equal_title('groongaについて', @document)
     end
   end
 
