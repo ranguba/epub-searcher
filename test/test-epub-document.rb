@@ -12,7 +12,7 @@ class TestEPUBDocument < Test::Unit::TestCase
   end
 
   def test_extract_author
-    assert_equal("groonga", @document.extract_author)
+    assert_equal(["groonga"], @document.extract_author)
   end
 
   def test_extract_title
