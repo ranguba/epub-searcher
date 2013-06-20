@@ -76,31 +76,31 @@ EOS
       # groonga_doc_11_12.epub ... spine を二つ含む EPUB ファイル
       #                            本文は groonga ドキュメント 1.1 と 1.2 が入っている
       epub_book_2 = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
-      @document_2 = EPUBSearcher::EPUBDocument.new(epub_book_2)
+      @document = EPUBSearcher::EPUBDocument.new(epub_book_2)
     end
 
     def test_extract_contributors
-      assert_equal_contributors(["groongaコミュニティ A", "groongaコミュニティ B", "groongaコミュニティ C"], @document_2)
+      assert_equal_contributors(["groongaコミュニティ A", "groongaコミュニティ B", "groongaコミュニティ C"], @document)
     end
 
     def test_extract_creators
-      assert_equal_creators(["groongaプロジェクト"], @document_2)
+      assert_equal_creators(["groongaプロジェクト"], @document)
     end
 
     def test_extract_title
-      assert_equal_title("groongaについて", @document_2)
+      assert_equal_title("groongaについて", @document)
     end
 
     def test_main_text
-      assert_equal_main_text("groonga_doc_11_12_main_text_expected.txt", @document_2)
+      assert_equal_main_text("groonga_doc_11_12_main_text_expected.txt", @document)
     end
 
     def test_extract_xhtml_spine
-      assert_equal_xhtml_spine(["item0001.xhtml", "item0002.xhtml"], @document_2)
+      assert_equal_xhtml_spine(["item0001.xhtml", "item0002.xhtml"], @document)
     end
 
     def test_create_groonga_cmd_define_schema
-      assert_equal_groonga_cmd_define_schema(@document_2)
+      assert_equal_groonga_cmd_define_schema(@document)
     end
   end
 
