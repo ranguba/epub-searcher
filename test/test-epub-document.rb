@@ -11,8 +11,8 @@ class TestEPUBDocument < Test::Unit::TestCase
     @document = EPUBSearcher::EPUBDocument.new(epub_book)
   end
 
-  def test_extract_author
-    assert_equal(["groonga"], @document.extract_author)
+  def test_extract_creators
+    assert_equal(["groonga"], @document.extract_creators)
   end
 
   def test_extract_title

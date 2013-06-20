@@ -4,7 +4,7 @@ module EPUBSearcher
       @epub_book = epub_book
     end
 
-    def extract_author
+    def extract_creators
       metadata = @epub_book.metadata
       creators = metadata.creators
       return creators.map {|creator| creator.content }
