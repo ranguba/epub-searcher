@@ -101,25 +101,18 @@ EOS
     end
   end
 
-  class TestSingleSpine < self
+  class TestCreateGroongaCmd < self
     def setup
-      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
-      @document = EPUBSearcher::EPUBDocument.new(epub_book)
+      epub_book_doc_all = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
+      @document_all = EPUBSearcher::EPUBDocument.new(epub_book_doc_all)
+
+      epub_book_doc_11_12 = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
+      @document_11_12 = EPUBSearcher::EPUBDocument.new(epub_book_doc_11_12)
     end
 
-    def test_create_groonga_cmd_define_schema
-      assert_equal_groonga_cmd_define_schema(@document)
-    end
-  end
-
-  class TestMultipleSpine < self
-    def setup
-      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12.epub'))
-      @document = EPUBSearcher::EPUBDocument.new(epub_book)
-    end
-
-    def test_create_groonga_cmd_define_schema
-      assert_equal_groonga_cmd_define_schema(@document)
+    def test_define_schema
+      assert_equal_groonga_cmd_define_schema(@document_all)
+      assert_equal_groonga_cmd_define_schema(@document_11_12)
     end
   end
 
