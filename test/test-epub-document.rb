@@ -35,6 +35,16 @@ class TestEPUBDocument < Test::Unit::TestCase
     def test_extract_xhtml_spine
       assert_equal(["OEBPS/item0001.xhtml"], @document_1.extract_xhtml_spine)
     end
+
+    def test_create_groonga_cmd_define_schema
+      define_schema_str = <<EOS
+table_create Books TABLE_HASH_KEY ShortText
+column_create Books author COLUMN_SCALAR ShortText
+column_create Books main_text COLUMN_SCALAR LongText
+column_create Books title COLUMN_SCALAR ShortText
+EOS
+      assert_equal(define_schema_str, @document_1.create_groonga_cmd_define_schema)
+    end
   end
 
   class TestMultipleSpine < self
@@ -64,6 +74,16 @@ class TestEPUBDocument < Test::Unit::TestCase
 
     def test_extract_xhtml_spine
       assert_equal(["item0001.xhtml", "item0002.xhtml"], @document_2.extract_xhtml_spine)
+    end
+
+    def test_create_groonga_cmd_define_schema
+      define_schema_str = <<EOS
+table_create Books TABLE_HASH_KEY ShortText
+column_create Books author COLUMN_SCALAR ShortText
+column_create Books main_text COLUMN_SCALAR LongText
+column_create Books title COLUMN_SCALAR ShortText
+EOS
+      assert_equal(define_schema_str, @document_2.create_groonga_cmd_define_schema)
     end
   end
 

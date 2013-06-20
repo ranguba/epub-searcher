@@ -4,6 +4,15 @@ module EPUBSearcher
       @epub_book = epub_book
     end
 
+    def create_groonga_cmd_define_schema
+      <<EOS
+table_create Books TABLE_HASH_KEY ShortText
+column_create Books author COLUMN_SCALAR ShortText
+column_create Books main_text COLUMN_SCALAR LongText
+column_create Books title COLUMN_SCALAR ShortText
+EOS
+    end
+
     def extract_contributors
       metadata = @epub_book.metadata
       return metadata.contributors.map(&:content)
