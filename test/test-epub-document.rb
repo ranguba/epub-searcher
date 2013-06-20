@@ -7,7 +7,7 @@ require 'epub-searcher/epub-document'
 
 class TestEPUBDocument < Test::Unit::TestCase
   def setup
-    epub_book = EPUB::Parser.parse(fixture_path('groonga.epub'))
+    epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
     @document = EPUBSearcher::EPUBDocument.new(epub_book)
   end
 
