@@ -78,27 +78,27 @@ EOS
 
   class TestExtracts < self
     def setup
-      epub_book_doc_all = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
-      @document_all = EPUBSearcher::EPUBDocument.new(epub_book_doc_all)
+      epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
+      @document = EPUBSearcher::EPUBDocument.new(epub_book)
     end
 
     def test_creators
-      assert_equal_creators(["groonga"], @document_all)
+      assert_equal_creators(["groonga"], @document)
     end
 
     def test_title
-      assert_equal_title("groongaについて", @document_all)
+      assert_equal_title("groongaについて", @document)
     end
   end
 
   class TestCreateGroongaCmd < self
     def setup
-      epub_book_doc_all = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
-      @document_all = EPUBSearcher::EPUBDocument.new(epub_book_doc_all)
+      epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
+      @document = EPUBSearcher::EPUBDocument.new(epub_book)
     end
 
     def test_define_schema
-      assert_equal_groonga_cmd_define_schema(@document_all)
+      assert_equal_groonga_cmd_define_schema(@document)
     end
   end
 
