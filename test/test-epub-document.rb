@@ -80,19 +80,14 @@ EOS
     def setup
       epub_book_doc_all = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       @document_all = EPUBSearcher::EPUBDocument.new(epub_book_doc_all)
-
-      epub_book_doc_11_12 = EPUB::Parser.parse(fixture_path('single_contributors_multi_spine.epub'))
-      @document_11_12 = EPUBSearcher::EPUBDocument.new(epub_book_doc_11_12)
     end
 
     def test_creators
       assert_equal_creators(["groonga"], @document_all)
-      assert_equal_creators(["groongaプロジェクト"], @document_11_12)
     end
 
     def test_title
       assert_equal_title("groongaについて", @document_all)
-      assert_equal_title("groongaについて", @document_11_12)
     end
   end
 
@@ -100,14 +95,10 @@ EOS
     def setup
       epub_book_doc_all = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       @document_all = EPUBSearcher::EPUBDocument.new(epub_book_doc_all)
-
-      epub_book_doc_11_12 = EPUB::Parser.parse(fixture_path('single_contributors_multi_spine.epub'))
-      @document_11_12 = EPUBSearcher::EPUBDocument.new(epub_book_doc_11_12)
     end
 
     def test_define_schema
       assert_equal_groonga_cmd_define_schema(@document_all)
-      assert_equal_groonga_cmd_define_schema(@document_11_12)
     end
   end
 
