@@ -66,9 +66,11 @@ class TestEPUBDocument < Test::Unit::TestCase
       assert_equal(["item0001.xhtml", "item0002.xhtml"], @document_2.extract_xhtml_spine)
     end
   end
+
   private
   def fixture_path(basename)
     File.join(__dir__, 'fixtures', basename)
   end
+
 end
 
