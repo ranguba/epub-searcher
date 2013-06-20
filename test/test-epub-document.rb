@@ -43,31 +43,31 @@ EOS
       # groonga_doc_all.epub ... spine を一つしか含まない EPUB ファイル
       #                          本文は groonga ドキュメント 1 章 が全て入っている
       epub_book_1 = EPUB::Parser.parse(fixture_path('groonga_doc_all.epub'))
-      @document_1 = EPUBSearcher::EPUBDocument.new(epub_book_1)
+      @document = EPUBSearcher::EPUBDocument.new(epub_book_1)
     end
 
     def test_extract_contributors
-      assert_equal_contributors([], @document_1)
+      assert_equal_contributors([], @document)
     end
 
     def test_extract_creators
-      assert_equal_creators(["groonga"], @document_1)
+      assert_equal_creators(["groonga"], @document)
     end
 
     def test_extract_title
-      assert_equal_title("groongaについて", @document_1)
+      assert_equal_title("groongaについて", @document)
     end
 
     def test_main_text
-      assert_equal_main_text("groonga_doc_all_main_text_expected.txt", @document_1)
+      assert_equal_main_text("groonga_doc_all_main_text_expected.txt", @document)
     end
 
     def test_extract_xhtml_spine
-      assert_equal_xhtml_spine(["OEBPS/item0001.xhtml"], @document_1)
+      assert_equal_xhtml_spine(["OEBPS/item0001.xhtml"], @document)
     end
 
     def test_create_groonga_cmd_define_schema
-      assert_equal_groonga_cmd_define_schema(@document_1)
+      assert_equal_groonga_cmd_define_schema(@document)
     end
   end
 
