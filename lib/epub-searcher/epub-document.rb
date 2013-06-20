@@ -4,7 +4,7 @@ module EPUBSearcher
       @epub_book = epub_book
     end
 
-    def create_groonga_cmd_define_schema
+    def create_groonga_command_define_schema
       <<EOS
 table_create Books TABLE_HASH_KEY ShortText
 column_create Books author COLUMN_SCALAR ShortText
