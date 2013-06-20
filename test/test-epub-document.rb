@@ -80,7 +80,7 @@ EOS
     end
 
     def test_extract_contributors
-      assert_equal_contributors(["groongaコミュニティ A", "groongaコミュニティ B", "groongaコミュニティ C"], @document)
+      assert_equal_contributors(["groongaコミュニティ"], @document)
     end
 
     def test_extract_creators
@@ -101,6 +101,18 @@ EOS
 
     def test_create_groonga_cmd_define_schema
       assert_equal_groonga_cmd_define_schema(@document)
+    end
+  end
+
+  class TestMultipleContributors < self
+    def setup
+      # groonga_doc_11_12_multi_contributors.epub ... groonga_doc_11_12.epub に contributors を複数持たせたもの
+      epub_book = EPUB::Parser.parse(fixture_path('groonga_doc_11_12_multi_contributors.epub'))
+      @document = EPUBSearcher::EPUBDocument.new(epub_book)
+    end
+
+    def test_extract_contributors
+      assert_equal_contributors(["groongaコミュニティ A", "groongaコミュニティ B", "groongaコミュニティ C"], @document)
     end
   end
 
