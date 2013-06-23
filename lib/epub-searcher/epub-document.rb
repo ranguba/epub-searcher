@@ -1,5 +1,7 @@
 module EPUBSearcher
   class EPUBDocument
+    attr_reader :epub_book
+
     def initialize(epub_book)
       if (epub_book.instance_of? EPUB::Book)
         @epub_book = epub_book
