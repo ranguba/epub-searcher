@@ -110,6 +110,18 @@ EOS
     end
   end
 
+  class TestRemoteFile < self
+    def setup
+      epub_path = 'http://tatsu-zine.com/samples/free/css21.epub'
+      @document = EPUBSearcher::EPUBDocument.new(epub_path)
+    end
+
+    def test_remote_file
+      assert_equal(EPUB::Book, @document.epub_book.class)
+      assert_equal_main_text('remote_file_main_text_expected.txt', @document)
+    end
+  end
+
   private
   def fixture_path(basename)
     File.join(__dir__, 'fixtures', basename)

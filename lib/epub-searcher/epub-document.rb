@@ -1,3 +1,5 @@
+require 'epub-searcher/remote-parser'
+
 module EPUBSearcher
   class EPUB::Book; end
 
@@ -9,7 +11,7 @@ module EPUBSearcher
       when EPUB::Book
         @epub_book = epub_book
       when String
-        @epub_book = EPUB::Parser.parse(epub_book)
+        @epub_book = EPUBSearcher::RemoteParser.parse(epub_book)
       end
     end
 
