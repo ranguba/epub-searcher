@@ -102,6 +102,14 @@ EOS
     end
   end
 
+  class TestConstructor < self
+    def test_local_path
+      epub_path = fixture_path('empty_contributors_single_spine.epub')
+      @document = EPUBSearcher::EPUBDocument.new(epub_path)
+      assert_equal(EPUB::Book, @document.epub_book.class)
+    end
+  end
+
   private
   def fixture_path(basename)
     File.join(__dir__, 'fixtures', basename)
