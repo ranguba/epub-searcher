@@ -1,8 +1,7 @@
+require 'epub/parser'
 require 'epub-searcher/remote-parser'
 
 module EPUBSearcher
-  class EPUB::Book; end
-
   class EPUBDocument
     attr_reader :epub_book
 
