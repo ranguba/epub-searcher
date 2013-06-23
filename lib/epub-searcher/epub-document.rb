@@ -5,9 +5,10 @@ module EPUBSearcher
     attr_reader :epub_book
 
     def initialize(epub_book)
-      if (epub_book.instance_of? EPUB::Book)
+      case epub_book
+      when EPUB::Book
         @epub_book = epub_book
-      elsif (epub_book.instance_of? String)
+      when String
         @epub_book = EPUB::Parser.parse(epub_book)
       end
     end
