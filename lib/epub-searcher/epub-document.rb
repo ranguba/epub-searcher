@@ -1,7 +1,9 @@
 module EPUBSearcher
   class EPUBDocument
     def initialize(epub_book)
+      if (epub_book.instance_of? EPUB::Book)
       @epub_book = epub_book
+      end
     end
 
     def create_groonga_command_define_schema
