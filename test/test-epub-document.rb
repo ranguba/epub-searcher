@@ -103,6 +103,12 @@ EOS
   end
 
   class TestConstructor < self
+    def test_epub_book_object
+      epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
+      @document = EPUBSearcher::EPUBDocument.new(epub_book)
+      assert_equal(EPUB::Book, @document.epub_book.class)
+    end
+
     def test_local_path
       epub_path = fixture_path('empty_contributors_single_spine.epub')
       @document = EPUBSearcher::EPUBDocument.new(epub_path)
