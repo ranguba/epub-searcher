@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 require 'test-unit'
+require 'mocha/setup'
 
 require 'epub/parser'
 require 'epub-searcher/epub-document'
@@ -118,13 +119,14 @@ EOS
 
   class TestRemoteFile < self
     def setup
-      epub_path = 'http://tatsu-zine.com/samples/free/css21.epub'
+      epub_path = fixture_path('empty_contributors_single_spine.epub')
+      File.expects(:readable_real?).with(epub_path).returns(false)
       @document = EPUBSearcher::EPUBDocument.new(epub_path)
     end
 
     def test_remote_file
       assert_equal(EPUB::Book, @document.epub_book.class)
-      assert_equal_main_text('remote_file_main_text_expected.txt', @document)
+      assert_equal_main_text('empty_contributors_single_spine_main_text_expected.txt', @document)
     end
   end
 
