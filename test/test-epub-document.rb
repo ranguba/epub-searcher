@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'fileutils'
+
 require 'test-unit'
 require 'mocha/setup'
 
@@ -86,6 +88,7 @@ class TestEPUBDocument < Test::Unit::TestCase
     def setup
       epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
+      FileUtils.rm_rf('db')
     end
 
     def test_define_schema
