@@ -3,6 +3,12 @@ require 'net/http'
 
 module EPUBSearcher
   class EPUBFile
+    class << self
+    def temporary_local_dir=(dir)
+      @@temporary_local_dir = dir
+    end
+    end
+
     attr_reader :local_path
 
     def initialize(uri)
@@ -15,11 +21,7 @@ module EPUBSearcher
     end
 
     def temporary_local_dir
-      @temporary_local_dir ||= File.join(__dir__, '..', '..', 'tmp')
-    end
-
-    def temporary_local_dir=(dir)
-      @temporary_local_dir = dir
+      @@temporary_local_dir ||= File.join(__dir__, '..', '..', 'tmp')
     end
 
     private
