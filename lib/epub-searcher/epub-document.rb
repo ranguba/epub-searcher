@@ -15,7 +15,7 @@ module EPUBSearcher
     attr_reader :epub_book
 
     def initialize(epub_book)
-        @epub_book = epub_book
+      @epub_book = epub_book
     end
 
     def extract_contributors
