@@ -42,7 +42,7 @@ module EPUBSearcher
       stdin.flush
       stdin.close
 
-      Process.waitall
+      Process.waitpid pid
     end
 
     def extract_contributors
