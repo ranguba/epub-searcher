@@ -103,6 +103,23 @@ EOS
     end
   end
 
+  class TestGroonga < self
+    def setup
+      epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
+      @document = EPUBSearcher::EPUBDocument.new(epub_book)
+    end
+
+    def test_define_schema
+      @document.define_schema
+
+      dump_command = "groonga #{@document.db_path} dump"
+      dumped_text = `#{dump_command}`
+
+      expected = File.read(fixture_path('defined_schema_dump_expected.txt'))
+      assert_equal(expected, dumped_text)
+    end
+  end
+
   class TestConstructor < self
     def test_epub_book_object
       epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))

@@ -23,6 +23,29 @@ column_create Books title COLUMN_SCALAR ShortText
 EOS
     end
 
+    def create_command_open_db
+      command = 'groonga'
+      if !File.exists?(db_path)
+        command << ' -n'
+      end
+      command << ' ' + db_path
+      return command
+    end
+
+    def db_path
+      return File.join(__dir__, '..', '..', 'db', 'epub-searcher.db')
+    end
+
+    def define_schema
+      piped_stdin, stdin = IO.pipe
+      pid = spawn(create_command_open_db, :in => piped_stdin, :out => '/dev/null')
+      stdin.write(create_groonga_command_define_schema)
+      stdin.flush
+      stdin.close
+
+      Process.waitall
+    end
+
     def extract_contributors
       metadata = @epub_book.metadata
       return metadata.contributors.map(&:content)
