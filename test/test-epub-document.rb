@@ -91,6 +91,10 @@ class TestEPUBDocument < Test::Unit::TestCase
       remove_db_directory
     end
 
+    def teardown
+      remove_db_directory
+    end
+
     def remove_db_directory
       FileUtils.rm_rf(File.dirname(@document.db_path))
     end
