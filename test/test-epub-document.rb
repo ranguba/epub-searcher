@@ -106,6 +106,7 @@ class TestEPUBDocument < Test::Unit::TestCase
         .expects(:download_remote_file).with(url)
         .returns(File.read(fixture_path('empty_contributors_single_spine.epub')))
 
+      EPUBSearcher::EPUBFile.temporary_local_dir = temporary_dir_path
       @document = EPUBSearcher::EPUBDocument.open(url)
     end
 
@@ -118,6 +119,10 @@ class TestEPUBDocument < Test::Unit::TestCase
   private
   def fixture_path(basename)
     File.join(__dir__, 'fixtures', basename)
+  end
+
+  def temporary_dir_path
+    File.join(__dir__, 'tmp')
   end
 
 end
