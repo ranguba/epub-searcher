@@ -14,7 +14,7 @@ module EPUBSearcher
         @epub_book = epub_book
       when String
         begin
-        @epub_book = EPUB::Parser.parse(epub_book)
+          @epub_book = EPUB::Parser.parse(epub_book)
         rescue RuntimeError
           local_path = get_remote_epub_file(epub_book)
           @epub_book = EPUB::Parser.parse(local_path)
