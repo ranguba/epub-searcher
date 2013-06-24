@@ -106,8 +106,17 @@ class TestEPUBDocument < Test::Unit::TestCase
         .expects(:download_remote_file).with(url)
         .returns(File.read(fixture_path('empty_contributors_single_spine.epub')))
 
+      remove_temporary_directory
       EPUBSearcher::EPUBFile.temporary_local_dir = temporary_dir_path
       @document = EPUBSearcher::EPUBDocument.open(url)
+    end
+
+    def teardown
+      remove_temporary_directory
+    end
+
+    def remove_temporary_directory
+      FileUtils.rm_rf(temporary_dir_path)
     end
 
     def test_remote_file
