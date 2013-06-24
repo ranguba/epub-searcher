@@ -23,6 +23,16 @@ module EPUBSearcher
       @db_path = path
     end
 
+    def load_records(epub_documents)
+      piped_stdin, stdin = IO.pipe
+      pid = spawn(create_command_open_db, :in => piped_stdin, :out => '/dev/null')
+      stdin.write(create_groonga_command_load_records(epub_documents))
+      stdin.flush
+      stdin.close
+
+      Process.waitpid pid
+    end
+
     def setup_database
       FileUtils.mkdir_p(File.dirname(db_path))
 
@@ -36,6 +46,22 @@ module EPUBSearcher
     end
 
     private
+    def create_groonga_command_load_records(epub_documents)
+      command = "load --table Books\n"
+      json = "["
+      epub_documents.each do |epub_document|
+        record = "{"
+        record << "\"author\":\"" + epub_document.extract_creators.join(' ') + "\""
+        record << "\"main_text\":\"" + epub_document.extract_main_text + "\""
+        record << "\"title\":\"" + epub_document.extract_title + "\""
+        record << "},"
+        json << record
+      end
+      json << "]\n"
+      command << json
+      return command
+    end
+
     def create_groonga_command_setup_database
       <<EOS
 table_create Books TABLE_NO_KEY
