@@ -84,33 +84,6 @@ class TestEPUBDocument < Test::Unit::TestCase
     end
   end
 
-  class TestGroonga < self
-    def setup
-      epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
-      @document = EPUBSearcher::EPUBDocument.new(epub_book)
-      @document.db_path = db_path
-      remove_db_directory
-    end
-
-    def teardown
-      remove_db_directory
-    end
-
-    def remove_db_directory
-      FileUtils.rm_rf(File.dirname(@document.db_path))
-    end
-
-    def test_setup_database
-      @document.setup_database
-
-      dump_command = "groonga #{@document.db_path} dump"
-      dumped_text = `#{dump_command}`
-
-      expected = File.read(fixture_path('defined_schema_dump_expected.txt'))
-      assert_equal(expected, dumped_text)
-    end
-  end
-
   class TestConstructor < self
     def test_epub_book_object
       epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
@@ -141,10 +114,6 @@ class TestEPUBDocument < Test::Unit::TestCase
   private
   def fixture_path(basename)
     File.join(__dir__, 'fixtures', basename)
-  end
-
-  def db_path
-    File.join(__dir__, 'tmp', 'db', 'epub-searcher.db')
   end
 
 end
