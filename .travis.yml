@@ -3,3 +3,5 @@ notifications:
     - groonga-commit@rubyforge.org
 rvm:
   - 2.0.0
+before_install:
+  - curl https://raw.github.com/groonga/groonga/master/data/travis/setup.sh | sh
