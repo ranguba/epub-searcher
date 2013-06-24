@@ -4,9 +4,9 @@ require 'net/http'
 module EPUBSearcher
   class EPUBFile
     class << self
-    def temporary_local_dir=(dir)
-      @@temporary_local_dir = dir
-    end
+      def temporary_local_dir=(dir)
+        @@temporary_local_dir = dir
+      end
     end
 
     attr_reader :local_path
