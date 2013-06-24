@@ -1,5 +1,4 @@
 require 'epub/parser'
-require 'epub-searcher/remote-parser'
 require 'epub-searcher/epub-file'
 
 module EPUBSearcher
