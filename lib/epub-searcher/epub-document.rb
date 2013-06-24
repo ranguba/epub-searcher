@@ -14,6 +14,7 @@ module EPUBSearcher
       when String
         @epub_book = EPUBSearcher::RemoteParser.parse(epub_book)
       end
+      @db_path = nil
     end
 
     def create_command_open_db
