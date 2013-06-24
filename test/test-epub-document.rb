@@ -88,6 +88,10 @@ class TestEPUBDocument < Test::Unit::TestCase
     def setup
       epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
+      remove_db_directory
+    end
+
+    def remove_db_directory
       FileUtils.rm_rf(File.dirname(@document.db_path))
     end
 
