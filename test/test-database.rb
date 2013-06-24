@@ -50,9 +50,9 @@ class TestDatabase < Test::Unit::TestCase
 
     def test_load_epub_documents
       documents = Array.new
-      documents << EPUBSearcher::EPUBDocument.new(fixture_path('empty_contributors_single_spine.epub'))
-      documents << EPUBSearcher::EPUBDocument.new(fixture_path('single_contributors_multi_spine.epub'))
-      documents << EPUBSearcher::EPUBDocument.new(fixture_path('multi_contributors_multi_spine.epub'))
+      documents << EPUBSearcher::EPUBDocument.open(fixture_path('empty_contributors_single_spine.epub'))
+      documents << EPUBSearcher::EPUBDocument.open(fixture_path('single_contributors_multi_spine.epub'))
+      documents << EPUBSearcher::EPUBDocument.open(fixture_path('multi_contributors_multi_spine.epub'))
       @database.load_records(documents)
 
       dump_command = "groonga #{@database.db_path} dump"

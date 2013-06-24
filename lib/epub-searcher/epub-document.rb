@@ -4,16 +4,18 @@ require 'epub-searcher/epub-file'
 
 module EPUBSearcher
   class EPUBDocument
+    class << self
+      def open(uri)
+        epub_file = EPUBFile.new(uri)
+        epub_book = EPUB::Parser.parse(epub_file.local_path)
+        new(epub_book)
+      end
+    end
+
     attr_reader :epub_book
 
     def initialize(epub_book)
-      case epub_book
-      when EPUB::Book
         @epub_book = epub_book
-      when String
-        epub_file = EPUBFile.new(epub_book)
-        @epub_book = EPUB::Parser.parse(epub_file.local_path)
-      end
     end
 
     def extract_contributors

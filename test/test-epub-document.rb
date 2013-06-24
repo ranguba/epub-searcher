@@ -93,7 +93,7 @@ class TestEPUBDocument < Test::Unit::TestCase
 
     def test_local_path
       epub_path = fixture_path('empty_contributors_single_spine.epub')
-      @document = EPUBSearcher::EPUBDocument.new(epub_path)
+      @document = EPUBSearcher::EPUBDocument.open(epub_path)
       assert_equal(EPUB::Book, @document.epub_book.class)
     end
   end
@@ -106,7 +106,7 @@ class TestEPUBDocument < Test::Unit::TestCase
         .expects(:download_remote_file).with(url)
         .returns(File.read(fixture_path('empty_contributors_single_spine.epub')))
 
-      @document = EPUBSearcher::EPUBDocument.new(url)
+      @document = EPUBSearcher::EPUBDocument.open(url)
     end
 
     def test_remote_file
