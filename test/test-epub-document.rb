@@ -102,9 +102,7 @@ class TestEPUBDocument < Test::Unit::TestCase
     def setup
       url = 'http://localhost/test.epub'
 
-      File.expects(:readable_real?).with(url).returns(false)
-      File.expects(:readable_real?).with() { |value| value != url }.returns(true)
-      EPUBSearcher::EPUBDocument.any_instance
+      EPUBSearcher::EPUBFile.any_instance
         .expects(:download_remote_file).with(url)
         .returns(File.read(fixture_path('empty_contributors_single_spine.epub')))
 
