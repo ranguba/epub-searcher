@@ -14,6 +14,14 @@ module EPUBSearcher
       end
     end
 
+    def temporary_local_dir
+      @temporary_local_dir ||= File.join(__dir__, '..', '..', 'tmp')
+    end
+
+    def temporary_local_dir=(dir)
+      @temporary_local_dir = dir
+    end
+
     private
     def get_remote_epub_file(url)
       basename = File.basename(url)
@@ -26,7 +34,7 @@ module EPUBSearcher
     end
 
     def make_temporary_local_path(basename)
-      File.join(__dir__, '..', '..', 'tmp', basename)
+      File.join(temporary_local_dir, basename)
     end
 
     def download_remote_file(url)
