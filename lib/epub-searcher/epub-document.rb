@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'net/http'
+
 require 'epub/parser'
 require 'epub-searcher/remote-parser'
 
@@ -10,7 +13,12 @@ module EPUBSearcher
       when EPUB::Book
         @epub_book = epub_book
       when String
-        @epub_book = EPUBSearcher::RemoteParser.parse(epub_book)
+        begin
+        @epub_book = EPUB::Parser.parse(epub_book)
+        rescue RuntimeError
+          local_path = get_remote_epub_file(epub_book)
+          @epub_book = EPUB::Parser.parse(local_path)
+        end
       end
     end
 
@@ -47,6 +55,25 @@ module EPUBSearcher
         end
       end
       return xhtml_spine
+    end
+
+    private
+    def get_remote_epub_file(url)
+      basename = File.basename(url)
+      local_path = make_temporary_local_path(basename)
+      FileUtils.mkdir_p(File.dirname(local_path))
+      open(local_path, 'w') do |file|
+        file.puts download_remote_file(url)
+      end
+      return local_path
+    end
+
+    def make_temporary_local_path(basename)
+      File.join(__dir__, '..', '..', 'tmp', basename)
+    end
+
+    def download_remote_file(url)
+      Net::HTTP.get_response(URI.parse(url)).body
     end
   end
 end
