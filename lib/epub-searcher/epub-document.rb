@@ -1,3 +1,5 @@
+require 'fileutils'
+
 require 'epub/parser'
 require 'epub-searcher/remote-parser'
 
@@ -28,6 +30,8 @@ module EPUBSearcher
     end
 
     def define_schema
+      FileUtils.mkdir_p('db')
+
       piped_stdin, stdin = IO.pipe
       pid = spawn(create_command_open_db, :in => piped_stdin, :out => '/dev/null')
       stdin.write(create_groonga_command_define_schema)
