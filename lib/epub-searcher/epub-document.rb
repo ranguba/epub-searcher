@@ -30,7 +30,7 @@ module EPUBSearcher
     end
 
     def define_schema
-      FileUtils.mkdir_p('db')
+      FileUtils.mkdir_p(File.dirname(db_path))
 
       piped_stdin, stdin = IO.pipe
       pid = spawn(create_command_open_db, :in => piped_stdin, :out => '/dev/null')
