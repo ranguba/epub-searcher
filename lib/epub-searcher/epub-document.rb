@@ -26,7 +26,11 @@ module EPUBSearcher
     end
 
     def db_path
-      return File.join(__dir__, '..', '..', 'db', 'epub-searcher.db')
+      @db_path || File.join(__dir__, '..', '..', 'db', 'epub-searcher.db')
+    end
+
+    def db_path=(path)
+      @db_path = path
     end
 
     def define_schema
