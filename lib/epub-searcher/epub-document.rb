@@ -14,15 +14,6 @@ module EPUBSearcher
       end
     end
 
-    def create_groonga_command_define_schema
-      <<EOS
-table_create Books TABLE_HASH_KEY ShortText
-column_create Books author COLUMN_SCALAR ShortText
-column_create Books main_text COLUMN_SCALAR LongText
-column_create Books title COLUMN_SCALAR ShortText
-EOS
-    end
-
     def create_command_open_db
       command = 'groonga'
       if !File.exists?(db_path)
@@ -79,6 +70,16 @@ EOS
         end
       end
       return xhtml_spine
+    end
+
+    private
+    def create_groonga_command_define_schema
+      <<EOS
+table_create Books TABLE_HASH_KEY ShortText
+column_create Books author COLUMN_SCALAR ShortText
+column_create Books main_text COLUMN_SCALAR LongText
+column_create Books title COLUMN_SCALAR ShortText
+EOS
     end
   end
 end

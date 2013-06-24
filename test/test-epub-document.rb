@@ -29,16 +29,6 @@ class TestEPUBDocument < Test::Unit::TestCase
     assert_equal(expected, document.extract_xhtml_spine)
   end
 
-  def assert_equal_groonga_command_define_schema(document)
-    define_schema_str = <<EOS
-table_create Books TABLE_HASH_KEY ShortText
-column_create Books author COLUMN_SCALAR ShortText
-column_create Books main_text COLUMN_SCALAR LongText
-column_create Books title COLUMN_SCALAR ShortText
-EOS
-    assert_equal(define_schema_str, document.create_groonga_command_define_schema)
-  end
-
   class TestContributors < self
     def test_empty
       epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
@@ -89,17 +79,6 @@ EOS
 
     def test_title
       assert_equal_title('groongaについて', @document)
-    end
-  end
-
-  class TestCreateGroongaCommand < self
-    def setup
-      epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
-      @document = EPUBSearcher::EPUBDocument.new(epub_book)
-    end
-
-    def test_define_schema
-      assert_equal_groonga_command_define_schema(@document)
     end
   end
 
