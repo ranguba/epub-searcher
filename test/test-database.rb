@@ -6,7 +6,7 @@ require 'epub-searcher/database'
 require 'epub-searcher/epub-document'
 
 class TestDatabase < Test::Unit::TestCase
-  class TestGroonga < self
+  class TestSetup < self
     def setup
       @database = EPUBSearcher::Database.new
       @database.db_path = db_path
