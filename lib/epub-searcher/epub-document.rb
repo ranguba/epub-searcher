@@ -34,12 +34,12 @@ module EPUBSearcher
       @db_path = path
     end
 
-    def define_schema
+    def setup_database
       FileUtils.mkdir_p(File.dirname(db_path))
 
       piped_stdin, stdin = IO.pipe
       pid = spawn(create_command_open_db, :in => piped_stdin, :out => '/dev/null')
-      stdin.write(create_groonga_command_define_schema)
+      stdin.write(create_groonga_command_setup_database)
       stdin.flush
       stdin.close
 
@@ -82,7 +82,7 @@ module EPUBSearcher
     end
 
     private
-    def create_groonga_command_define_schema
+    def create_groonga_command_setup_database
       <<EOS
 table_create Books TABLE_NO_KEY
 column_create Books author COLUMN_SCALAR ShortText

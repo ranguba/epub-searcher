@@ -100,8 +100,8 @@ class TestEPUBDocument < Test::Unit::TestCase
       FileUtils.rm_rf(File.dirname(@document.db_path))
     end
 
-    def test_define_schema
-      @document.define_schema
+    def test_setup_database
+      @document.setup_database
 
       dump_command = "groonga #{@document.db_path} dump"
       dumped_text = `#{dump_command}`
