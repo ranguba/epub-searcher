@@ -18,6 +18,10 @@ class TestEPUBDocument < Test::Unit::TestCase
     assert_equal(expected, document.extract_creators)
   end
 
+  def assert_equal_file_path(expected, document)
+    assert_equal(expected, document.file_path)
+  end
+
   def assert_equal_title(expected, document)
     assert_equal(expected, document.extract_title)
   end
@@ -79,6 +83,10 @@ class TestEPUBDocument < Test::Unit::TestCase
       assert_equal_creators(['groonga'], @document)
     end
 
+    def test_file_path
+      assert_equal_file_path(fixture_path('empty_contributors_single_spine.epub'), @document)
+    end
+
     def test_title
       assert_equal_title('groongaについて', @document)
     end
@@ -100,15 +108,15 @@ class TestEPUBDocument < Test::Unit::TestCase
 
   class TestRemoteFile < self
     def setup
-      url = 'http://localhost/test.epub'
+      @url = 'http://localhost/test.epub'
 
       EPUBSearcher::EPUBFile.any_instance
-        .expects(:download_remote_file).with(url)
+        .expects(:download_remote_file).with(@url)
         .returns(File.read(fixture_path('empty_contributors_single_spine.epub')))
 
       remove_temporary_directory
       EPUBSearcher::EPUBFile.temporary_local_dir = temporary_dir_path
-      @document = EPUBSearcher::EPUBDocument.open(url)
+      @document = EPUBSearcher::EPUBDocument.open(@url)
     end
 
     def teardown
@@ -117,6 +125,11 @@ class TestEPUBDocument < Test::Unit::TestCase
 
     def remove_temporary_directory
       FileUtils.rm_rf(temporary_dir_path)
+    end
+
+    def test_file_path
+      expected_path = File.join(temporary_dir_path, File.basename(@url))
+      assert_equal_file_path(expected_path, @document)
     end
 
     def test_remote_file

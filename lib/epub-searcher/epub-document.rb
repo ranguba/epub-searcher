@@ -51,6 +51,10 @@ module EPUBSearcher
       end
       return xhtml_spine
     end
+
+    def file_path
+      @epub_book.epub_file
+    end
   end
 end
 
