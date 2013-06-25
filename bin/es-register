@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'epub-searcher/database'
+require 'epub-searcher/epub-document'
+
+if ARGV.count == 0
+  puts "Usage: #{File.basename($PROGRAM_NAME)} EPUBFile1 EPUBFile2 ..."
+  exit(false)
+end
+
+db = EPUBSearcher::Database.new
+unless File.exists? db.db_path
+  puts "set up database"
+  db.setup_database
+end
+
+documents = Array.new
+ARGV.each do |epub_path|
+  puts "load ... " + epub_path
+  documents << EPUBSearcher::EPUBDocument.open(epub_path)
+end
+db.load_records(documents)
+
+puts "end"
+

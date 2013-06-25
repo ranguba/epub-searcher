@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+def expand_path(relative_path)
+  File.expand_path(relative_path, __dir__)
+end
+
+epub_files = [
+  expand_path('../data/test-setup/kk1.epub'),
+  expand_path('../data/test-setup/kk2.epub'),
+  expand_path('../data/test-setup/css21.epub'),
+]
+
+command = "#{expand_path('es-register')} " + epub_files.join(' ')
+system command
+
