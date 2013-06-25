@@ -51,9 +51,9 @@ module EPUBSearcher
       json = "["
       epub_documents.each do |epub_document|
         record = "{"
-        record << "\"author\":\"" + epub_document.extract_creators.join(' ') + "\""
-        record << "\"main_text\":\"" + epub_document.extract_main_text + "\""
-        record << "\"title\":\"" + epub_document.extract_title + "\""
+        record << %Q("author":"#{epub_document.extract_creators.join(' ')}")
+        record << %Q("main_text":"#{epub_document.extract_main_text}")
+        record << %Q("title":"#{epub_document.extract_title}")
         record << "},"
         json << record
       end
