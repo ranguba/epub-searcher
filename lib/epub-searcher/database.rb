@@ -26,7 +26,7 @@ module EPUBSearcher
     def load_records(epub_documents)
       piped_stdin, stdin = IO.pipe
       pid = spawn(open_db_command, :in => piped_stdin, :out => '/dev/null')
-      stdin.write(create_groonga_command_load_records(epub_documents))
+      stdin.write(groonga_load_records_command(epub_documents))
       stdin.flush
       stdin.close
 
@@ -46,7 +46,7 @@ module EPUBSearcher
     end
 
     private
-    def create_groonga_command_load_records(epub_documents)
+    def groonga_load_records_command(epub_documents)
       command = "load --table Books\n"
       json = "["
       epub_documents.each do |epub_document|
