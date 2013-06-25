@@ -38,7 +38,7 @@ module EPUBSearcher
 
       piped_stdin, stdin = IO.pipe
       pid = spawn(open_db_command, :in => piped_stdin, :out => '/dev/null')
-      stdin.write(create_groonga_command_setup_database)
+      stdin.write(groonga_setup_db_command)
       stdin.flush
       stdin.close
 
@@ -62,7 +62,7 @@ module EPUBSearcher
       return command
     end
 
-    def create_groonga_command_setup_database
+    def groonga_setup_db_command
       <<EOS
 table_create Books TABLE_NO_KEY
 column_create Books author COLUMN_SCALAR ShortText
