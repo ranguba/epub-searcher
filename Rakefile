@@ -1,5 +1,4 @@
-task :default => :test
+require 'bundler/setup'
+require 'padrino-core/cli/rake'
 
-task :test do
-  sh('ruby', '-w', '-I', 'lib', 'test/run-test.rb')
-end
+PadrinoTasks.init

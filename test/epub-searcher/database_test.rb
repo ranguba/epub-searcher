@@ -56,8 +56,8 @@ class TestDatabase < Test::Unit::TestCase
       @database.load_records(documents)
 
       dump_command = "groonga #{@database.db_path} dump"
-      dumped_text = `#{dump_command}`.gsub(%r|/.+?/test/fixtures/|) do
-        "${PREFIX}/test/fixtures/"
+      dumped_text = `#{dump_command}`.gsub(%r|/.+?/test/epub-searcher/fixtures/|) do
+        "${PREFIX}/test/epub-searcher/fixtures/"
       end
 
       expected = File.read(fixture_path('loaded_records_dump_expected.txt'))

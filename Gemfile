@@ -6,3 +6,10 @@ gem 'nokogiri'
 gem 'test-unit'
 gem 'rake'
 gem 'mocha'
+
+gem 'sass'
+gem 'haml'
+
+gem 'shoulda', :group => 'test'
+gem 'rack-test', :require => 'rack/test', :group => 'test'
+gem 'padrino', '0.11.2'

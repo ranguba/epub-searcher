@@ -1,0 +1,9 @@
+---
+:orm: none
+:test: shoulda
+:mock: none
+:script: none
+:renderer: haml
+:stylesheet: scss
+:namespace: Epub
+:migration_format: number
