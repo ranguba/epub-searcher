@@ -54,6 +54,7 @@ module EPUBSearcher
         record << %Q("author":"#{epub_document.extract_creators.join(' ')}")
         record << %Q("main_text":"#{epub_document.extract_main_text}")
         record << %Q("title":"#{epub_document.extract_title}")
+        record << %Q("file_path":"#{epub_document.file_path}")
         record << "},"
         json << record
       end
@@ -68,6 +69,7 @@ table_create Books TABLE_NO_KEY
 column_create Books author COLUMN_SCALAR ShortText
 column_create Books main_text COLUMN_SCALAR LongText
 column_create Books title COLUMN_SCALAR ShortText
+column_create Books file_path COLUMN_SCALAR ShortText
 EOS
     end
   end
