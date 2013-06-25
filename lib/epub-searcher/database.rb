@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'json'
 
 module EPUBSearcher
   class Database
@@ -48,18 +49,17 @@ module EPUBSearcher
 
     def groonga_load_records_command(epub_documents)
       command = "load --table Books\n"
-      json = "["
+      json = Array.new
       epub_documents.each do |epub_document|
-        record = "{"
-        record << %Q("author":"#{epub_document.extract_creators.join(' ')}")
-        record << %Q("main_text":"#{epub_document.extract_main_text}")
-        record << %Q("title":"#{epub_document.extract_title}")
-        record << %Q("file_path":"#{epub_document.file_path}")
-        record << "},"
+        record = {
+          "author" => epub_document.extract_creators.join(' '),
+          "main_text" => epub_document.extract_main_text,
+          "title" => epub_document.extract_title,
+          "file_path" => epub_document.file_path,
+        }
         json << record
       end
-      json << "]\n"
-      command << json
+      command << JSON.generate(json)
       return command
     end
 
