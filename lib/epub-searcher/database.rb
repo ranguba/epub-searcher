@@ -6,15 +6,6 @@ module EPUBSearcher
       @db_path = nil
     end
 
-    def open_db_command
-      command = 'groonga'
-      if !File.exists?(db_path)
-        command << ' -n'
-      end
-      command << ' ' + db_path
-      return command
-    end
-
     def db_path
       @db_path || File.join(__dir__, '..', '..', 'db', 'epub-searcher.db')
     end
@@ -46,6 +37,15 @@ module EPUBSearcher
     end
 
     private
+    def open_db_command
+      command = 'groonga'
+      if !File.exists?(db_path)
+        command << ' -n'
+      end
+      command << ' ' + db_path
+      return command
+    end
+
     def groonga_load_records_command(epub_documents)
       command = "load --table Books\n"
       json = "["
