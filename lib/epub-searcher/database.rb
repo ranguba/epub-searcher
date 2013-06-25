@@ -6,7 +6,7 @@ module EPUBSearcher
       @db_path = nil
     end
 
-    def create_command_open_db
+    def open_db_command
       command = 'groonga'
       if !File.exists?(db_path)
         command << ' -n'
@@ -25,7 +25,7 @@ module EPUBSearcher
 
     def load_records(epub_documents)
       piped_stdin, stdin = IO.pipe
-      pid = spawn(create_command_open_db, :in => piped_stdin, :out => '/dev/null')
+      pid = spawn(open_db_command, :in => piped_stdin, :out => '/dev/null')
       stdin.write(create_groonga_command_load_records(epub_documents))
       stdin.flush
       stdin.close
@@ -37,7 +37,7 @@ module EPUBSearcher
       FileUtils.mkdir_p(File.dirname(db_path))
 
       piped_stdin, stdin = IO.pipe
-      pid = spawn(create_command_open_db, :in => piped_stdin, :out => '/dev/null')
+      pid = spawn(open_db_command, :in => piped_stdin, :out => '/dev/null')
       stdin.write(create_groonga_command_setup_database)
       stdin.flush
       stdin.close
