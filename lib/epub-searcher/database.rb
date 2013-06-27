@@ -57,7 +57,7 @@ module EPUBSearcher
           "file_path" => epub_document.file_path,
         }
       end
-      command << JSON.generate(records)
+      command << records.to_json
       return command
     end
 
