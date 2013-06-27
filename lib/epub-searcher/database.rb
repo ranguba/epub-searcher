@@ -49,15 +49,13 @@ module EPUBSearcher
 
     def groonga_load_records_command(epub_documents)
       command = "load --table Books\n"
-      records = Array.new
-      epub_documents.each do |epub_document|
-        record = {
+      records = epub_documents.map do |epub_document|
+        {
           "author" => epub_document.extract_creators.join(' '),
           "main_text" => epub_document.extract_main_text,
           "title" => epub_document.extract_title,
           "file_path" => epub_document.file_path,
         }
-        records << record
       end
       command << JSON.generate(records)
       return command
