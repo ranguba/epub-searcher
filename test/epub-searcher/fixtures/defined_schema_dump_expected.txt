@@ -3,3 +3,7 @@ column_create Books author COLUMN_SCALAR ShortText
 column_create Books file_path COLUMN_SCALAR ShortText
 column_create Books main_text COLUMN_SCALAR LongText
 column_create Books title COLUMN_SCALAR ShortText
+table_create Terms TABLE_PAT_KEY ShortText --default_tokenizer TokenBigram --normalizer NormalizerAuto
+column_create Terms entries_title_index COLUMN_INDEX|WITH_POSITION Books title
+column_create Terms entries_main_text_index COLUMN_INDEX|WITH_POSITION Books main_text
+column_create Terms entries_author_index COLUMN_INDEX|WITH_POSITION Books author
