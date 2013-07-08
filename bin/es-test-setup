@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'epub-searcher/database'
+
 def expand_path(relative_path)
   File.expand_path(relative_path, __dir__)
 end
@@ -9,6 +11,12 @@ epub_files = [
   expand_path('../data/test-setup/kk2.epub'),
   expand_path('../data/test-setup/css21.epub'),
 ]
+
+db = EPUBSearcher::Database.new
+if File.exists? db.db_path
+  puts "test setup was already done"
+  exit(false)
+end
 
 command = "#{expand_path('es-register')} " + epub_files.join(' ')
 system command
