@@ -1,0 +1,17 @@
+%div{:class => 'container'}
+
+  %div{:class => 'page-header'}
+    %h1 Groonga Sample
+
+  %form{:class => 'form-search centered', :action => '/', :method => 'GET'}
+    %input{:type => 'text', :class => 'input-xxlarge search-query', :name => 'q'}
+      %a{:class => 'btn'}<
+        %i{:class => 'icon-search'}>
+        &nbsp;Search
+
+  %div{:class => 'row'}
+    %div{:class => 'span2'}
+    %div{:class => 'span8'}
+      %ul{:class => 'media-list'}
+        = partial 'result', :collection => @results if @results
+    %div{:class => 'span2'}

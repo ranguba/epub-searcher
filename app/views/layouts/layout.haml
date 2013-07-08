@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title Groonga Sample
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1.0'}
+    %link{:href => 'stylesheets/bootstrap.css', :rel => 'stylesheet', :media => 'screen'}
+    = stylesheet_link_tag 'groonga'
+  %body
+    = yield
+    %script{:src => 'http://code.jquery.com/jquery.js'}
+    %script{:src => 'javascripts/bootstrap.min.js'}
