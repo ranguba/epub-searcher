@@ -22,7 +22,8 @@ Epub::App.controllers do
 end
 
 def search_from_groonga(query_words)
-  client = Groonga::Client.open
+  records = nil
+  Groonga::Client.open do |client|
   select = client.select(
     :table => :Books,
     :query => query_words,
@@ -30,5 +31,7 @@ def search_from_groonga(query_words)
     :output_columns => 'author,title,snippet_html(main_text)',
     :command_version => 2,
   )
-  select.records
+  records = select.records
+  end
+  records
 end
