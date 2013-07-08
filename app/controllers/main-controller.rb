@@ -6,14 +6,7 @@ Epub::App.controllers do
   get :index do
     query_words = params[:q]
 
-    client = Groonga::Client.open
-    select = client.select(
-      :table => :Books,
-      :query => query_words,
-      :match_columns => 'author,title,main_text',
-      :output_columns => 'author,title,snippet_html(main_text)',
-      :command_version => 2,
-    )
+    select = search_from_groonga(query_words)
 
     @results = Array.new
     select.records.each do |record|
@@ -22,4 +15,15 @@ Epub::App.controllers do
     render 'index'
   end
 
+end
+
+def search_from_groonga(query_words)
+    client = Groonga::Client.open
+    select = client.select(
+      :table => :Books,
+      :query => query_words,
+      :match_columns => 'author,title,main_text',
+      :output_columns => 'author,title,snippet_html(main_text)',
+      :command_version => 2,
+    )
 end
