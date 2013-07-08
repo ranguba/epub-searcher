@@ -1,7 +1,7 @@
 %div{:class => 'container'}
 
   %div{:class => 'page-header'}
-    %h1 EPUB Searcher
+    %h1= link_to 'EPUB Searcher', url_for(:index)
 
   %form{:class => 'form-search centered', :action => '/', :method => 'GET'}
     %input{:type => 'text', :class => 'input-xxlarge search-query', :name => 'q'}
