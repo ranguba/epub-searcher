@@ -8,12 +8,12 @@ Epub::App.controllers do
 
     right_query = query_words && !query_words.empty?
     if right_query
-    hit_records = search_from_groonga(query_words)
+      hit_records = search_from_groonga(query_words)
 
-    @results = Array.new
-    hit_records.each do |record|
-      @results << record
-    end
+      @results = Array.new
+      hit_records.each do |record|
+        @results << record
+      end
     end
 
     render 'index'
