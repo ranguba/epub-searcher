@@ -6,10 +6,10 @@ Epub::App.controllers do
   get :index do
     query_words = params[:q]
 
-    select = search_from_groonga(query_words)
+    hit_records = search_from_groonga(query_words)
 
     @results = Array.new
-    select.records.each do |record|
+    hit_records.each do |record|
       @results << record
     end
     render 'index'
@@ -26,4 +26,5 @@ def search_from_groonga(query_words)
     :output_columns => 'author,title,snippet_html(main_text)',
     :command_version => 2,
   )
+  select.records
 end
