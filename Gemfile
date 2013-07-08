@@ -6,6 +6,7 @@ gem 'nokogiri'
 gem 'test-unit'
 gem 'rake'
 gem 'mocha'
+gem 'groonga-client'
 
 gem 'sass'
 gem 'haml'
