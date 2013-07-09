@@ -64,7 +64,12 @@ class TestRemoteDatabase < Test::Unit::TestCase
         :table => :Books,
         :values => expected_values,
       }
-      @database.client.expects(:load).with(expected)
+      @database.client.expects(:load).with do |actual_params|
+        actual_params[:values].gsub!(%r|"file_path":"/.+?/test/epub-searcher/fixtures/|) do
+          "\"file_path\":\"${PREFIX}/test/epub-searcher/fixtures/"
+        end
+        expected == actual_params
+      end
 
       @database.load_records(documents)
     end
