@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'epub-searcher/database'
+require 'epub-searcher/remote-database'
 require 'epub-searcher/epub-document'
 
 if ARGV.count == 0
@@ -8,11 +8,8 @@ if ARGV.count == 0
   exit(false)
 end
 
-db = EPUBSearcher::Database.new
-unless File.exists? db.db_path
-  puts "set up database"
-  db.setup_database
-end
+db = EPUBSearcher::RemoteDatabase.new
+db.setup_database
 
 documents = Array.new
 ARGV.each do |epub_path|
