@@ -54,7 +54,7 @@ class TestRemoteDatabase < Test::Unit::TestCase
         'multi_contributors_multi_spine.epub',
       ]
 
-      documents = epub_paths.collect do |path|
+      documents = epub_paths.map do |path|
         document = EPUBSearcher::EPUBDocument.open(fixture_path(path))
         document
       end
