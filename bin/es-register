@@ -11,10 +11,8 @@ end
 db = EPUBSearcher::RemoteDatabase.new
 db.setup_database
 
-documents = Array.new
-ARGV.each do |epub_path|
-  puts "load ... " + epub_path
-  documents << EPUBSearcher::EPUBDocument.open(epub_path)
+documents = ARGV.collect do |epub_path|
+  EPUBSearcher::EPUBDocument.open(epub_path)
 end
 db.load_records(documents)
 
