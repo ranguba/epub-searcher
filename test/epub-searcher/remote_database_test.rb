@@ -59,13 +59,12 @@ class TestRemoteDatabase < Test::Unit::TestCase
         document
       end
 
-      expected = File.read(fixture_path('load_records_params_expected.txt'))
-      @database.client
-        .expects(:load)
-        .once
-        .with do |params|
-        expected == params.to_s
-      end
+      expected_values = File.read(fixture_path('load_records_params_values_expected.txt'))
+      expected = {
+        :table => :Books,
+        :values => expected_values,
+      }
+      @database.client.expects(:load).with(expected)
 
       @database.load_records(documents)
     end
