@@ -3,7 +3,7 @@
 require 'epub-searcher/remote-database'
 require 'epub-searcher/epub-document'
 
-if ARGV.count == 0
+if ARGV.empty?
   puts "Usage: #{File.basename($PROGRAM_NAME)} EPUBFile1 EPUBFile2 ..."
   exit(false)
 end
