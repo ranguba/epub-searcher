@@ -13,7 +13,7 @@ class TestRemoteDatabase < Test::Unit::TestCase
     def test_setup_database
       expected_table_create_params = [
         {:name=>:Books, :flags=>'TABLE_NO_KEY'},
-        {:name=>:Terms, :flags=>'TABLE_PAT_KEY', :type=>:ShortText, :default_tokenizer=>:TokenBigram, :normalizer=>:NormalizerAuto},
+        {:name=>:Terms, :flags=>'TABLE_PAT_KEY', :key_type=>:ShortText, :default_tokenizer=>:TokenBigram, :normalizer=>:NormalizerAuto},
       ]
 
       expected_column_create_params = [

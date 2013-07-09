@@ -44,7 +44,7 @@ module EPUBSearcher
       @client.table_create(
         :name => :Terms,
         :flags => 'TABLE_PAT_KEY',
-        :type => :ShortText,
+        :key_type => :ShortText,
         :default_tokenizer => :TokenBigram,
         :normalizer => :NormalizerAuto,
       )
