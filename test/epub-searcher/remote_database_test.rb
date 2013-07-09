@@ -3,7 +3,7 @@ require 'epub-searcher/remote-database'
 class TestRemoteDatabase < Test::Unit::TestCase
   class TestSetup < self
     def setup
-      @database = EPUBSearcher::RemoteDatabase.new
+      @database = EPUBSearcher::RemoteDatabase.new(:protocol => :http)
     end
 
     def teardown
@@ -46,7 +46,7 @@ class TestRemoteDatabase < Test::Unit::TestCase
 
   class TestRecords < self
     def setup
-      @database = EPUBSearcher::RemoteDatabase.new
+      @database = EPUBSearcher::RemoteDatabase.new(:protocol => :http)
     end
 
     def teardown
