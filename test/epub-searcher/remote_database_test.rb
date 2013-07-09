@@ -26,18 +26,12 @@ class TestRemoteDatabase < Test::Unit::TestCase
         {:table=>:Terms, :name=>'entries_title_index', :flags=>'COLUMN_INDEX|WITH_POSITION', :type=>:Books, :source=>'title'},
       ]
 
-      @database.client
-        .expects(:table_create)
-        .times(expected_table_create_params.size)
-        .with do |params|
-        expected_table_create_params.include?(params)
+      expected_table_create_params.each do |params|
+        @database.client.expects(:table_create).with(params)
       end
 
-      @database.client
-        .expects(:column_create)
-        .times(expected_column_create_params.size)
-        .with do |params|
-        expected_column_create_params.include?(params)
+      expected_column_create_params.each do |params|
+        @database.client.expects(:column_create).with(params)
       end
 
       @database.setup_database
