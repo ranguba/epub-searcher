@@ -5,7 +5,11 @@ module EPUBSearcher
     attr_reader :client
 
     def initialize(options={})
-      @client = Groonga::Client.open(options)
+      default_options = {
+        :protocol => :http,
+        :port     => 13000,
+      }
+      @client = Groonga::Client.open(default_options.merge(options))
     end
 
     def close
