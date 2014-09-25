@@ -59,8 +59,9 @@ class TestDatabase < Test::Unit::TestCase
       dumped_text = `#{dump_command}`.gsub(%r|/.+?/test/epub-searcher/fixtures/|) do
         "${PREFIX}/test/epub-searcher/fixtures/"
       end
+      dumped_text.gsub!(/(?:\\r\\n)+/, "\\r\\n")
 
-      expected = File.read(fixture_path('loaded_records_dump_expected.txt'))
+      expected = File.read(fixture_path('loaded_records_dump_expected.txt')).gsub!(/(?:\\r\\n)+/, "\\r\\n")
       assert_equal(expected, dumped_text)
     end
   end
