@@ -27,9 +27,10 @@ class TestEPUBDocument < Test::Unit::TestCase
   end
 
   def assert_equal_main_text(expected_file, document)
-    expected_text = File.read(fixture_path(expected_file)).gsub(/(?:\r\n)+/, "\r\n")
-    main_text = document.extract_main_text.gsub(/(?:\r\n)+/, "\r\n")
-    assert_equal(expected_text, main_text)
+    expected_text = File.read(fixture_path(expected_file))
+    main_text = document.extract_main_text
+    assert_equal(normalize_newline(expected_text),
+                 normalize_newline(main_text))
   end
 
   def assert_equal_xhtml_spine(expected, document)

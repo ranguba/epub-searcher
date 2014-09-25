@@ -19,4 +19,12 @@ class Test::Unit::TestCase
     @app ||= block_given? ? app.instance_eval(&blk) : app
     @app ||= Padrino.application
   end
+
+  def normalize_newline(text)
+    text.gsub(/(?:\r\n)+/, "\r\n")
+  end
+
+  def normalize_newline_literal(text)
+    text.gsub(/(?:\\r\\n)+/, "\\r\\n")
+  end
 end

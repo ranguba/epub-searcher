@@ -62,13 +62,13 @@ class TestRemoteDatabase < Test::Unit::TestCase
       expected_values = File.read(fixture_path('load_records_params_values_expected.txt'))
       expected = {
         :table => :Books,
-        :values => expected_values.gsub(/(?:(\\r\\n)+)/, "\\r\\n"),
+        :values => normalize_newline_literal(expected_values),
       }
       @database.client.expects(:load).with do |actual_params|
         actual_params[:values].gsub!(%r|"file_path":"/.+?/test/epub-searcher/fixtures/|) do
           "\"file_path\":\"${PREFIX}/test/epub-searcher/fixtures/"
         end
-        actual_params[:values].gsub!(/(?:\\r\\n)+/, "\\r\\n")
+        actual_params[:values] = normalize_newline_literal(actual_params[:values])
         expected == actual_params
       end
 
