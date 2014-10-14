@@ -17,4 +17,5 @@ gem 'padrino', '0.11.2'
 
 group :development do
   gem 'droonga-engine'
+  gem 'foreman'
 end
