@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "effectiveDate": "2014-10-15T00:35:29+09:00",
+  "datasets": {
+    "Default": {
+      "nWorkers": 4,
+      "plugins": [
+        "groonga",
+        "search",
+        "crud",
+        "dump",
+        "system",
+        "catalog"
+      ],
+      "schema": {
+      },
+      "replicas": [
+        {
+          "dimension": "_key",
+          "slicer": "hash",
+          "slices": [
+            {
+              "weight": 100,
+              "volume": {
+                "address": "127.0.0.1:10031/droonga.000"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
