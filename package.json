@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "droonga-http-server": "*"
+  }
+}
