@@ -1,5 +1,5 @@
-EPUB Sercher
-============
+EPUB Searcher
+=============
 
 A EPUB search Web application based on droonga.
 
