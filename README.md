@@ -15,3 +15,8 @@ Running droonga components for development
 ------------------------------------------
 
     $ bundle exec foreman start
+
+Running web app server
+----------------------
+
+    $ bundle exec padrino start
