@@ -8,7 +8,7 @@ Setting development environment up
 
     $ git clone https://github.com/ranguba/epub-searcher.git
     $ cd epub-searcher
-    $ bundle install --path=vendor/bundle
+    $ bundle install --path=vendor/gems
     $ npm install
 
 Running droonga components for development
