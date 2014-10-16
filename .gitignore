@@ -4,5 +4,5 @@ tmp/**/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
-db/*.db
-db/*.db.*
+db/*
+!db/catalog.json
