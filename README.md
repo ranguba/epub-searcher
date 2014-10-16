@@ -10,4 +10,8 @@ Setting development environment up
     $ cd epub-searcher
     $ bundle install --path=vendor/bundle
     $ npm install
+
+Running droonga components for development
+------------------------------------------
+
     $ bundle exec foreman start
