@@ -6,3 +6,6 @@ vendor/gems/*
 .sass-cache/*
 db/*
 !db/catalog.json
+.bundle
+Gemfile.lock
+node_modules
