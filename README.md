@@ -14,7 +14,7 @@ Setting development environment up
 Running droonga components for development
 ------------------------------------------
 
-    $ bundle exec foreman start
+    $ bundle exec foreman start --env=.env.development
 
 Running web app server
 ----------------------
