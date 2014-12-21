@@ -13,7 +13,7 @@ gem 'haml'
 
 gem 'shoulda', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
-gem 'padrino', '0.11.2'
+gem 'padrino', '0.12.4'
 
 group :development do
   gem 'droonga-engine'
