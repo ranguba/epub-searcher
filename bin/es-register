@@ -8,7 +8,9 @@ if ARGV.empty?
   exit(false)
 end
 
-db = EPUBSearcher::RemoteDatabase.new
+require_relative '../config/boot'
+
+db = EPUBSearcher::RemoteDatabase.new(host: Epub::App.settings.droonga_host, port: Epub::App.settings.droonga_port)
 db.setup_database
 
 documents = ARGV.map do |epub_path|
