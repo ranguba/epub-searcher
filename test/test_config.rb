@@ -1,3 +1,4 @@
+$LOAD_PATH.unshift(File.expand_path('../lib', __dir__))
 RACK_ENV = 'test' unless defined?(RACK_ENV)
 require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
 
