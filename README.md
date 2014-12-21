@@ -1,6 +1,8 @@
 EPUB Searcher
 =============
 
+[![Build Status](https://travis-ci.org/ranguba/epub-searcher.svg?branch=master)](https://travis-ci.org/ranguba/epub-searcher)
+
 A EPUB search Web application based on droonga.
 
 Setting development environment up
