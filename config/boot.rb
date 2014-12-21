@@ -31,6 +31,9 @@ Bundler.require(:default, PADRINO_ENV)
 #   include Padrino::Helpers::TranslationHelpers
 # end
 
+require 'dotenv'
+Dotenv.load ".env.#{PADRINO_ENV}"
+
 ##
 # Add your before (RE)load hooks here
 #

@@ -30,6 +30,8 @@ Padrino.configure_apps do
   set :session_secret, '6dd0f61200fa0daf3c0f607069603164d15b6ab2171f92ba2989f2134959a78d'
   set :protection, true
   set :protect_from_csrf, true
+  set :droonga_host, ENV['host']
+  set :droonga_port, ENV['http_server_port']
 end
 
 # Mounts the core application for this project
