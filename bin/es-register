@@ -10,7 +10,11 @@ end
 
 require_relative '../config/boot'
 
-db = EPUBSearcher::RemoteDatabase.new(host: Epub::App.settings.droonga_host, port: Epub::App.settings.droonga_port)
+db_options = {
+  host: Epub::App.settings.droonga_host,
+  port: Epub::App.settings.droonga_port,
+}
+db = EPUBSearcher::RemoteDatabase.new(db_options)
 db.setup_database
 
 documents = ARGV.map do |epub_path|
