@@ -6,21 +6,21 @@ require 'epub-searcher/database'
 require 'epub-searcher/epub-document'
 
 class TestDatabase < Test::Unit::TestCase
+  def setup
+    @database = EPUBSearcher::Database.new
+    @database.db_path = db_path
+    remove_db_directory
+  end
+
+  def teardown
+    remove_db_directory
+  end
+
+  def remove_db_directory
+    FileUtils.rm_rf(File.dirname(@database.db_path))
+  end
+
   class TestSetup < self
-    def setup
-      @database = EPUBSearcher::Database.new
-      @database.db_path = db_path
-      remove_db_directory
-    end
-
-    def teardown
-      remove_db_directory
-    end
-
-    def remove_db_directory
-      FileUtils.rm_rf(File.dirname(@database.db_path))
-    end
-
     def test_setup_database
       @database.setup_database
 
@@ -34,18 +34,8 @@ class TestDatabase < Test::Unit::TestCase
 
   class TestLoadRecords < self
     def setup
-      @database = EPUBSearcher::Database.new
-      @database.db_path = db_path
-      remove_db_directory
+      super
       @database.setup_database
-    end
-
-    def teardown
-      remove_db_directory
-    end
-
-    def remove_db_directory
-      FileUtils.rm_rf(File.dirname(@database.db_path))
     end
 
     def test_load_epub_documents
