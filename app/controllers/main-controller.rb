@@ -23,7 +23,12 @@ end
 
 def search_from_groonga(query_words)
   records = nil
-  Groonga::Client.open protocol: :http, host: settings.droonga_host, port: settings.droonga_port do |client|
+  options = {
+    protocol: :http,
+    host: settings.droonga_host,
+    port: settings.droonga_port,
+  }
+  Groonga::Client.open(options) do |client|
     select = client.select(
       :table => :Books,
       :query => query_words,
