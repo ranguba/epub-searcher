@@ -13,6 +13,10 @@ Setting development environment up
     $ bundle install --path=vendor/gems
     $ npm install
 
+### Registering EPUB books for development environment ###
+
+    $ ./bin/es-register ./data/test-setup/*.epub another/book.epub
+
 Running droonga components for development
 ------------------------------------------
 
