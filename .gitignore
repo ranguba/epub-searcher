@@ -9,3 +9,4 @@ db/*
 .bundle
 Gemfile.lock
 node_modules
+public/stylesheets/
