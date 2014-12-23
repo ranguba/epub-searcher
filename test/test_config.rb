@@ -36,4 +36,8 @@ class Test::Unit::TestCase
   def normalize_newline_literal(text)
     text.gsub(/(?:\\r\\n)+/, "\\r\\n")
   end
+
+  def omit_on_travis
+    omit 'Background Droonga processes not running on Travis CI' if ENV['TRAVIS']
+  end
 end
