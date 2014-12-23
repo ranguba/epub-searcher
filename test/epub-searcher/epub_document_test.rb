@@ -122,6 +122,7 @@ class TestEPUBDocument < Test::Unit::TestCase
     end
 
     def teardown
+      super
       remove_temporary_directory
     end
 

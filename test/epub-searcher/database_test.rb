@@ -13,6 +13,7 @@ class TestDatabase < Test::Unit::TestCase
   end
 
   def teardown
+    super
     remove_db_directory
   end
 

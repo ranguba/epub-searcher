@@ -16,6 +16,7 @@ group :test do
   gem 'mocha'
   gem 'shoulda'
   gem 'rack-test', :require => 'rack/test'
+  gem 'test-unit-capybara', :require => 'test/unit/capybara'
 end
 
 group :development do

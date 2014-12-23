@@ -7,6 +7,7 @@ class TestRemoteDatabase < Test::Unit::TestCase
     end
 
     def teardown
+      super
       @database.close
     end
 
@@ -44,6 +45,7 @@ class TestRemoteDatabase < Test::Unit::TestCase
     end
 
     def teardown
+      super
       @database.close
     end
 
