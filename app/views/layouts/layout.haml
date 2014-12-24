@@ -1,7 +1,12 @@
 !!!
 %html
   %head
-    %title EPUB Searcher
+    %title
+      - if content_for? :title
+        = yield_content(:title)
+        \- EPUB Searcher
+      - else
+        EPUB Searcher
     %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1.0'}
     %link{:href => '//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css', :rel => 'stylesheet', :media => 'screen'}
     = stylesheet_link_tag 'groonga'
