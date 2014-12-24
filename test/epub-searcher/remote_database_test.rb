@@ -2,7 +2,12 @@ require 'epub-searcher/remote-database'
 
 class TestRemoteDatabase < Test::Unit::TestCase
   def setup
-    @database = EPUBSearcher::RemoteDatabase.new(:protocol => :http)
+    db_options = {
+      protocol: :http,
+      host: Epub::App.settings.droonga_host,
+      port: Epub::App.settings.droonga_port
+    }
+    @database = EPUBSearcher::RemoteDatabase.new(db_options)
   end
 
   def teardown
