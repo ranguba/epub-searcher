@@ -8,6 +8,8 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, RACK_ENV)
 
+$LOAD_PATH.unshift Padrino.root('lib')
+
 ##
 # ## Enable devel logging
 #
