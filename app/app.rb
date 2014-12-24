@@ -1,4 +1,4 @@
-module Epub
+module EPUBSearcher
   class App < Padrino::Application
     register ScssInitializer
     register Padrino::Rendering

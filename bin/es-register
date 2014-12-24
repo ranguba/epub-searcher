@@ -11,8 +11,8 @@ end
 require_relative '../config/boot'
 
 db_options = {
-  host: Epub::App.settings.droonga_host,
-  port: Epub::App.settings.droonga_port,
+  host: EPUBSearcher::App.settings.droonga_host,
+  port: EPUBSearcher::App.settings.droonga_port,
 }
 db = EPUBSearcher::RemoteDatabase.new(db_options)
 db.setup_database

@@ -13,9 +13,9 @@ class Test::Unit::TestCase
   # You can use this method to custom specify a Rack app
   # you want rack-test to invoke:
   #
-  #   app Epub::App
-  #   app Epub::App.tap { |a| }
-  #   app(Epub::App) do
+  #   app EPUBSearcher::App
+  #   app EPUBSearcher::App.tap { |a| }
+  #   app(EPUBSearcher::App) do
   #     set :foo, :bar
   #   end
   #

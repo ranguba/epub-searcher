@@ -1,6 +1,6 @@
 require 'groonga/client'
 
-Epub::App.controllers do
+EPUBSearcher::App.controllers do
 
   layout :layout
   get :index do
