@@ -22,4 +22,5 @@ end
 group :development do
   gem 'droonga-engine'
   gem 'foreman'
+  gem 'puma'
 end
