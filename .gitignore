@@ -7,6 +7,5 @@ vendor/gems/*
 db/*
 !db/catalog.json
 .bundle
-Gemfile.lock
 node_modules
 public/stylesheets/
