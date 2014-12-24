@@ -1,5 +1,3 @@
-require 'groonga/client'
-
 EPUBSearcher::App.controllers do
 
   layout :layout
