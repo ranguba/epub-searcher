@@ -76,6 +76,23 @@ module EPUBSearcher
         db.close
       end
     end
+
+    def books_from_groonga
+      options = {
+        protocol: :http,
+        host: settings.droonga_host,
+        port: settings.droonga_port
+      }
+      db = RemoteDatabase.new(options)
+      begin
+        db.select(
+          :table => :Books,
+          :output_columns => 'author,title,file_path'
+        )
+      ensure
+        db.close
+      end
+    end
   end
 
 end

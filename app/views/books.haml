@@ -1,0 +1,11 @@
+%div{:class => 'container'}
+
+  %div{:class => 'page-header'}
+    %h1= link_to 'EPUB Searcher', url_for(:index)
+
+  %div{:class => 'row'}
+    %div{:class => 'col-md-2'}
+    %div{:class => 'col-md-8'}
+      %ul{:class => 'media-list'}
+        = partial 'book', :collection => @books if @books
+    %div{:class => 'col-md-2'}

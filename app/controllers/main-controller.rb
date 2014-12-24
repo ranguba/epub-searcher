@@ -12,4 +12,10 @@ EPUBSearcher::App.controllers do
     render 'index'
   end
 
+  get :books do
+    @books = books_from_groonga
+
+    render 'books'
+  end
+
 end
