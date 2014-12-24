@@ -73,8 +73,32 @@ class TestRemoteDatabase < Test::Unit::TestCase
     end
   end
 
+  def test_select_records
+    select_params = {
+      :table => :Books,
+      :query => 'query words',
+      :match_columns => 'author,title,main_text',
+      :output_columns => 'author,title,snippet_html(main_text)',
+      :command_version => 2
+    }
+    @database.client.expects(:select).with(select_params).returns(search_result)
+
+    @database.select(
+      :table => :Books,
+      :query => 'query words',
+      :match_columns => 'author,title,main_text',
+      :output_columns => 'author,title,snippet_html(main_text)'
+    )
+  end
+
   private
   def fixture_path(basename)
     File.join(__dir__, 'fixtures', basename)
+  end
+
+  def search_result
+    result = Object.new
+    result.stubs(:records)
+    result
   end
 end

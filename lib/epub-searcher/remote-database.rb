@@ -2,6 +2,8 @@ require 'groonga/client'
 
 module EPUBSearcher
   class RemoteDatabase
+    GROONGA_COMMAND_VERSION = 2
+
     attr_reader :client
 
     def initialize(options={})
@@ -22,6 +24,12 @@ module EPUBSearcher
     def setup_database
       groonga_setup_db_books
       groonga_setup_db_terms
+    end
+
+    def select(params = {})
+      params = params.dup
+      params[:command_version] ||= GROONGA_COMMAND_VERSION
+      @client.select(params).records
     end
 
     private
