@@ -1,16 +1,16 @@
 require 'epub-searcher/remote-database'
 
 class TestRemoteDatabase < Test::Unit::TestCase
+  def setup
+    @database = EPUBSearcher::RemoteDatabase.new(:protocol => :http)
+  end
+
+  def teardown
+    super
+    @database.close
+  end
+
   class TestSetup < self
-    def setup
-      @database = EPUBSearcher::RemoteDatabase.new(:protocol => :http)
-    end
-
-    def teardown
-      super
-      @database.close
-    end
-
     def test_setup_database
       expected_table_create_params = [
         {:name=>:Books, :flags=>'TABLE_NO_KEY'},
@@ -40,15 +40,6 @@ class TestRemoteDatabase < Test::Unit::TestCase
   end
 
   class TestRecords < self
-    def setup
-      @database = EPUBSearcher::RemoteDatabase.new(:protocol => :http)
-    end
-
-    def teardown
-      super
-      @database.close
-    end
-
     def test_load_records
       epub_paths = [
         'empty_contributors_single_spine.epub',
