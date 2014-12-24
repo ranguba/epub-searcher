@@ -59,23 +59,22 @@ module EPUBSearcher
     #
 
     def search_from_groonga(query_words)
-      records = nil
       options = {
         protocol: :http,
         host: settings.droonga_host,
-        port: settings.droonga_port,
+        port: settings.droonga_port
       }
-      Groonga::Client.open(options) do |client|
-        select = client.select(
+      db = RemoteDatabase.new(options)
+      begin
+        db.select(
           :table => :Books,
           :query => query_words,
           :match_columns => 'author,title,main_text',
-          :output_columns => 'author,title,snippet_html(main_text)',
-          :command_version => 2,
+          :output_columns => 'author,title,snippet_html(main_text)'
         )
-        records = select.records
+      ensure
+        db.close
       end
-      records
     end
   end
 
