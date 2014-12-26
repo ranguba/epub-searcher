@@ -18,4 +18,10 @@ EPUBSearcher::App.controllers do
     render 'books'
   end
 
+  delete :books, :with => :id do
+    result = delete_from_groonga(params[:id])
+    halt 400, result.message unless result.success?
+    redirect url_for(:books)
+  end
+
 end
