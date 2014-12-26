@@ -87,7 +87,7 @@ module EPUBSearcher
       begin
         db.select(
           :table => :Books,
-          :output_columns => 'author,title,file_path'
+          :output_columns => '_id,author,title,file_path'
         )
       ensure
         db.close
