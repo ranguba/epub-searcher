@@ -93,6 +93,24 @@ module EPUBSearcher
         db.close
       end
     end
+
+    def delete_from_groonga(id)
+      db_options = {
+        protocol: :http,
+        host: settings.droonga_host,
+        port: settings.droonga_port
+      }
+      db = RemoteDatabase.new(db_options)
+      begin
+        params = {
+          :table => :Books,
+          :id => id
+        }
+        db.delete(params)
+      ensure
+        db.close
+      end
+    end
   end
 
 end
