@@ -59,12 +59,7 @@ module EPUBSearcher
     #
 
     def search_from_groonga(query_words)
-      options = {
-        protocol: :http,
-        host: settings.droonga_host,
-        port: settings.droonga_port
-      }
-      db = RemoteDatabase.new(options)
+      db = RemoteDatabase.new(default_db_options)
       begin
         db.select(
           :table => :Books,
@@ -78,12 +73,7 @@ module EPUBSearcher
     end
 
     def books_from_groonga
-      options = {
-        protocol: :http,
-        host: settings.droonga_host,
-        port: settings.droonga_port
-      }
-      db = RemoteDatabase.new(options)
+      db = RemoteDatabase.new(default_db_options)
       begin
         db.select(
           :table => :Books,
@@ -95,12 +85,7 @@ module EPUBSearcher
     end
 
     def delete_from_groonga(id)
-      db_options = {
-        protocol: :http,
-        host: settings.droonga_host,
-        port: settings.droonga_port
-      }
-      db = RemoteDatabase.new(db_options)
+      db = RemoteDatabase.new(default_db_options)
       begin
         params = {
           :table => :Books,
@@ -110,6 +95,15 @@ module EPUBSearcher
       ensure
         db.close
       end
+    end
+
+    private
+    def default_db_options
+      {
+        :protocol => :http,
+        :host => settings.droonga_host,
+        :port => settings.droonga_port
+      }
     end
   end
 
