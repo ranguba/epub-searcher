@@ -91,6 +91,20 @@ class TestRemoteDatabase < Test::Unit::TestCase
     )
   end
 
+  def test_delete_record
+    delete_params = {
+      :table => :Books,
+      :id => 1,
+      :command_version => 2
+    }
+    @database.client.expects(:delete).with(delete_params)
+
+    @database.delete(
+      :table => :Books,
+      :id => 1
+    )
+  end
+
   private
   def fixture_path(basename)
     File.join(__dir__, 'fixtures', basename)
