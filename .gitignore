@@ -6,6 +6,7 @@ vendor/gems/*
 .sass-cache/*
 db/*
 !db/catalog.json
+!db/catalog.test.json
 .bundle
 node_modules
 public/stylesheets/
