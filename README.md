@@ -26,3 +26,14 @@ Running web app server
 ----------------------
 
     $ bundle exec padrino start
+
+Running test suite
+------------------
+
+Run droonga components for test environment:
+
+    $ bundle exec foreman start --env=.env.test
+
+then run test:
+
+    $ bundle exec rake test
