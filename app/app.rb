@@ -59,7 +59,6 @@ module EPUBSearcher
     #
 
     def search_from_groonga(query_words)
-      db = RemoteDatabase.new(default_db_options)
       begin
         db.select(
           :table => :Books,
@@ -73,7 +72,6 @@ module EPUBSearcher
     end
 
     def books_from_groonga
-      db = RemoteDatabase.new(default_db_options)
       begin
         db.select(
           :table => :Books,
@@ -85,7 +83,6 @@ module EPUBSearcher
     end
 
     def delete_from_groonga(id)
-      db = RemoteDatabase.new(default_db_options)
       begin
         params = {
           :table => :Books,
@@ -98,6 +95,10 @@ module EPUBSearcher
     end
 
     private
+    def db
+      @db ||= RemoteDatabase.new(default_db_options)
+    end
+
     def default_db_options
       {
         :protocol => :http,
