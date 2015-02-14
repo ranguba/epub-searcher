@@ -1,4 +1,7 @@
 {
+  "dependencies": {
+    "bower": "*"
+  },
   "devDependencies": {
     "droonga-http-server": "*"
   }
