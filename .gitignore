@@ -10,3 +10,4 @@ db/*
 .bundle
 node_modules
 public/stylesheets/
+public/components/
