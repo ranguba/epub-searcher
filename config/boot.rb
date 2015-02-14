@@ -32,6 +32,7 @@ $LOAD_PATH.unshift Padrino.root('lib')
 #   include Padrino::Helpers::NumberHelpers
 #   include Padrino::Helpers::TranslationHelpers
 # end
+I18n.default_locale = :ja
 
 require 'dotenv'
 Dotenv.load ".env.#{RACK_ENV}"
