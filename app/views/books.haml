@@ -1,8 +1,8 @@
-- content_for(:title) {'Registered books'}
+- content_for(:title) {t('books.title')}
 %div{:class => 'container'}
 
   %div{:class => 'page-header'}
-    %h1= link_to 'Registered books', url_for(:books)
+    %h1= link_to t('books.title'), url_for(:books)
 
   = partial 'form_search'
 

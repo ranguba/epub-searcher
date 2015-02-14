@@ -3,5 +3,5 @@
     %div{:class => 'col-md-6 col-md-offset-2'}
       %input{:type => 'search', :class => 'form-control', :name => 'q', :value => @query_words, :required => true}
     %div{:class => 'col-md-2'}
-      %button{:class => 'form-control btn btn-default'} Search
+      %button{:class => 'form-control btn btn-default'}== #{t 'form_search.button'}
 
