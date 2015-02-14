@@ -29,7 +29,7 @@ module EPUBSearcher
       basename = File.basename(url)
       local_path = make_temporary_local_path(basename)
       FileUtils.mkdir_p(File.dirname(local_path))
-      open(local_path, 'w') do |file|
+      open(local_path, 'w:ASCII-8BIT') do |file|
         file.puts download_remote_file(url)
       end
       return local_path
