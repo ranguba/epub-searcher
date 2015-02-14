@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+header {
+  @extend .navbar-default;
+}
+
 form {
   margin-top: 1em;
   margin-bottom: 1em;
