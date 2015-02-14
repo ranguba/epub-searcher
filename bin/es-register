@@ -1,14 +1,13 @@
 #!/usr/bin/env ruby
 
-require 'epub-searcher/remote-database'
-require 'epub-searcher/epub-document'
-
 if ARGV.empty?
   puts "Usage: #{File.basename($PROGRAM_NAME)} EPUBFile1 EPUBFile2 ..."
   exit(false)
 end
 
 require_relative '../config/boot'
+require 'epub-searcher/remote-database'
+require 'epub-searcher/epub-document'
 
 db_options = {
   host: EPUBSearcher::App.settings.droonga_host,
