@@ -29,11 +29,11 @@ class Test::Unit::TestCase
   end
 
   def normalize_newline(text)
-    text.gsub(/(?:\r\n)+/, "\r\n")
+    text.gsub(/(?:\r\n)+/, "\r\n").chomp + "\n"
   end
 
   def normalize_newline_literal(text)
-    text.gsub(/(?:\\r\\n)+/, "\\r\\n")
+    text.gsub(/(?:\\r\\n)+/, "\\r\\n").chomp + "\n"
   end
 
   def omit_on_travis
