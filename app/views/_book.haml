@@ -3,4 +3,4 @@
     %h4{:class => 'media-heading'}== #{book['title']} - #{book['author']}
     = book['file_path']
     = form_for :books, url_for(:books, :id => book['_id']), :method => 'delete', :class => 'form_delete_book' do |f|
-      = f.submit t('form_delete_book.button'), :class => 'btn btn-danger'
+      = f.submit t('form_delete_book.button')
