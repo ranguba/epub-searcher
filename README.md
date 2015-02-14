@@ -37,3 +37,8 @@ Run droonga components for test environment:
 then run test:
 
     $ bundle exec rake test
+
+License
+-------
+
+GPLv3 or later.
