@@ -12,6 +12,7 @@ Setting development environment up
     $ cd epub-searcher
     $ bundle install --path=vendor/gems
     $ npm install
+    $ ./node_modules/.bin/bower install
 
 ### Registering EPUB books for development environment ###
 
