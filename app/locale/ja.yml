@@ -1,0 +1,7 @@
+ja:
+  form_search:
+    button: 検索
+  books:
+    title: 登録済みの本
+  form_delete_book:
+    button: 削除
