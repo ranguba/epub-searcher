@@ -38,6 +38,14 @@ module EPUBSearcher
       @client.delete(params)
     end
 
+    def truncate(target_name, options = {})
+      params = options.dup
+      params[:target_name] = target_name
+      params[:table] = target_name
+      params[:command_version] ||= GROONGA_COMMAND_VERSION
+      @client.truncate(params)
+    end
+
     private
     def groonga_setup_db_books
       @client.table_create(:name => :Books, :flags => 'TABLE_NO_KEY')
