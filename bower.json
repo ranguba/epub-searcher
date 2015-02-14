@@ -1,0 +1,7 @@
+{
+  "name": "EPUB Searcher",
+  "dependencies": {
+    "bootstrap-sass": "3.3.3",
+    "jquery": "2.1.3"
+  }
+}
