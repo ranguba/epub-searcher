@@ -11,6 +11,8 @@ gem 'haml'
 
 gem 'padrino', '0.12.4'
 
+gem 'dotenv'
+
 group :test do
   gem 'test-unit'
   gem 'mocha'
