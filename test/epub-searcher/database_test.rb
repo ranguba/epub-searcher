@@ -47,7 +47,7 @@ class TestDatabase < Test::Unit::TestCase
       documents << EPUBSearcher::EPUBDocument.open(fixture_path('multi_contributors_multi_spine.epub'))
       @database.load_records(documents)
 
-      dump_command = "groonga #{@database.db_path} dump"
+      dump_command = "groonga #{@database.db_path} dump --dumpindexes yes"
       dumped_text = `#{dump_command}`.gsub(%r|/.+?/test/epub-searcher/fixtures/|) do
         "${PREFIX}/test/epub-searcher/fixtures/"
       end
