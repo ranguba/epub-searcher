@@ -29,7 +29,8 @@ class TestDatabase < Test::Unit::TestCase
       dumped_text = `#{dump_command}`
 
       expected = File.read(fixture_path('defined_schema_dump_expected.txt'))
-      assert_equal(expected, dumped_text)
+      assert_equal(normalize_newline(expected),
+                   normalize_newline(dumped_text))
     end
   end
 
