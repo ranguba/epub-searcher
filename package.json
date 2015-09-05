@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "bower": "bower install"
+  },
   "dependencies": {
     "bower": "*"
   },
