@@ -5,6 +5,11 @@ EPUB Searcher
 
 A EPUB search Web application based on droonga.
 
+Demo site
+---------
+
+http://epub-searcher-demo.kitaitimakoto.net/
+
 Setting development environment up
 ----------------------------------
 
