@@ -10,6 +10,33 @@ Demo site
 
 http://epub-searcher-demo.kitaitimakoto.net/
 
+Installation
+------------
+
+### 1. Install [Droonga][] ###
+
+See [Droonga documentation][] for details.
+
+### 2. Install [Bundler][] ###
+
+    $ [sudo] gem install bundler
+
+### 3. Install EPUB Searcher ###
+
+    $ git clone https://github.com/ranguba/epub-searcher.git path/to/docroot
+    $ cd path/to/docroot
+    $ bundle install --path=vendor/bundle
+    $ npm install
+    $ npm run bower
+
+### 4. Run web and app server ###
+
+EPUB Searcher is a Rack application. There's serveral way to run Rack applications behind web servers, such as Nginx x Puma. It's up to you.
+
+[Droonga]: http://droonga.org/
+[Droonga documentation]: http://droonga.org/install/
+[Bundler]: http://bundler.io/
+
 Setting development environment up
 ----------------------------------
 
