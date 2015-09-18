@@ -3,7 +3,7 @@
 
   %div{:class => 'page-header'}
     %h2= link_to 'EPUB Searcher', url_for(:index)
-    %h1= t'search_results', query_words: @query_words
+    %h1= t'search_results', query_words: @query_words if @results
 
   = partial 'form_search'
 
