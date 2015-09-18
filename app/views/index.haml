@@ -1,7 +1,8 @@
 %div{:class => 'container'}
 
   %div{:class => 'page-header'}
-    %h1= link_to 'EPUB Searcher', url_for(:index)
+    %h2= link_to 'EPUB Searcher', url_for(:index)
+    %h1= t'search_results', query_words: @query_words
 
   = partial 'form_search'
 
