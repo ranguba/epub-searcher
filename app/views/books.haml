@@ -1,6 +1,8 @@
 - content_for(:title) {t('books.title')}
 %div{:class => 'container'}
 
+  = partial 'authors_drilldown'
+
   %div{:class => 'page-header'}
     %h1= link_to t('books.title'), url_for(:books)
 

@@ -64,7 +64,9 @@ module EPUBSearcher
           :table => :Books,
           :query => query_words,
           :match_columns => 'author,title,main_text',
-          :output_columns => 'author,title,snippet_html(main_text)'
+          :output_columns => 'author,title,snippet_html(main_text)',
+          :drilldown => 'author',
+          :drilldown_output_columns => '_key,_nsubrecs'
         )
       ensure
         db.close
@@ -75,7 +77,22 @@ module EPUBSearcher
       begin
         db.select(
           :table => :Books,
-          :output_columns => '_id,author,title,file_path'
+          :output_columns => '_id,author,title,file_path',
+          :drilldown => 'author',
+          :drilldown_output_columns => '_key,_nsubrecs'
+        )
+      ensure
+        db.close
+      end
+    end
+
+    def author_drilldowns_from_groonga
+      begin
+        db.select(
+          :table => :Books,
+          :drilldown => 'author',
+          :drilldown_output_columns => '_key,_nsubrecs',
+          :limit => 0
         )
       ensure
         db.close

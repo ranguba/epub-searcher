@@ -1,6 +1,8 @@
 - content_for(:title) {t('search_results', query_words: @query_words)} if @results
 %div{:class => 'container'}
 
+  = partial 'authors_drilldown'
+
   %div{:class => 'page-header'}
     %h2= link_to 'EPUB Searcher', url_for(:index)
     %h1= t'search_results', query_words: @query_words if @results
