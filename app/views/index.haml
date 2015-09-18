@@ -1,3 +1,4 @@
+- content_for(:title) {t('search_results', query_words: @query_words)} if @query_words
 %div{:class => 'container'}
 
   %div{:class => 'page-header'}
