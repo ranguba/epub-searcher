@@ -29,7 +29,7 @@ module EPUBSearcher
     def select(params = {})
       params = params.dup
       params[:command_version] ||= GROONGA_COMMAND_VERSION
-      @client.select(params).records
+      @client.select(params)
     end
 
     def delete(params = {})

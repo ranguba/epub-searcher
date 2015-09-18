@@ -6,14 +6,14 @@ EPUBSearcher::App.controllers do
 
     right_query = @query_words && !@query_words.empty?
     if right_query
-      @results = search_from_groonga(@query_words)
+      @results = search_from_groonga(@query_words).records
     end
 
     render 'index'
   end
 
   get :books do
-    @books = books_from_groonga
+    @books = books_from_groonga.records
 
     render 'books'
   end
