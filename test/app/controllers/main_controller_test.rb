@@ -10,12 +10,16 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_get_index
+    omit_on_travis
+
     get '/'
 
     assert last_response.ok?
   end
 
   def test_get_index_form
+    omit_on_travis
+
     visit '/'
 
     assert page.has_selector?('form input[type="search"]')
