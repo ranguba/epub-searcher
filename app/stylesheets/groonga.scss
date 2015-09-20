@@ -51,3 +51,14 @@ form.form_delete_book {
     @extend .btn-danger;
   }
 }
+
+ul.author-drilldowns {
+  @extend .list-group;
+  @extend .clearfix;
+  font-size: smaller;
+
+  li {
+    @extend .list-group-item;
+    float: left;
+  }
+}
