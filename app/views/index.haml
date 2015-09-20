@@ -1,10 +1,10 @@
-- content_for(:title) {t('search_results', query_words: @query_words)} if @results
+- content_for(:title) {t('search_results', query_words: @query_words, hits: @hits)} if @results
 %div{:class => 'container'}
 
   = partial 'authors_drilldown'
 
   %div{:class => 'page-header'}
-    %h1= t'search_results', query_words: @query_words if @results
+    %h1= t'search_results', query_words: @query_words, hits: @hits if @results
 
   = partial 'form_search'
 

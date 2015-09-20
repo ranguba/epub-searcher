@@ -1,5 +1,5 @@
 en:
-  search_results: "Search results for %{query_words}"
+  search_results: "Search results for %{query_words}(%{hits})"
   form_search:
     button: Search
   books:
