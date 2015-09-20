@@ -81,7 +81,7 @@ class MainControllerTest < Test::Unit::TestCase
     books = db.select(
       table: :Books,
       output_columns: '_id'
-    )
+    ).records
     books.each do |book|
       params = {
         table: :Books,
