@@ -65,8 +65,10 @@ module EPUBSearcher
           :query => query_words,
           :match_columns => 'author,title,main_text',
           :output_columns => 'author,title,snippet_html(main_text)',
+          :limit => -1,
           :drilldown => 'author',
-          :drilldown_output_columns => '_key,_nsubrecs'
+          :drilldown_output_columns => '_key,_nsubrecs',
+          :drilldown_limit => -1
         )
       ensure
         db.close
@@ -78,8 +80,10 @@ module EPUBSearcher
         db.select(
           :table => :Books,
           :output_columns => '_id,author,title,file_path',
+          :limit => -1,
           :drilldown => 'author',
-          :drilldown_output_columns => '_key,_nsubrecs'
+          :drilldown_output_columns => '_key,_nsubrecs',
+          :drilldown_limit => -1
         )
       ensure
         db.close
@@ -92,7 +96,7 @@ module EPUBSearcher
           :table => :Books,
           :drilldown => 'author',
           :drilldown_output_columns => '_key,_nsubrecs',
-          :limit => 0
+          :drilldown_limit => -1
         )
       ensure
         db.close
