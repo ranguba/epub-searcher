@@ -20,7 +20,11 @@
     = yield
     %footer
       %ul
-        %li= link_to 'Ranguba Project', 'http://ranguba.org/'
+        %li<
+          = link_to 'Ranguba Project', 'http://ranguba.org/'
+          = '('
+          = link_to 'ja', 'http://ranguba.org/ja/'
+          = ')'
         %li= link_to 'GitHub Repo', 'https://github.com/ranguba/epub-searcher'
     %script{:src => '/components/jquery/dist/jquery.min.js'}
     %script{:src => '/components/bootstrap-sass/assets/javascripts/bootstrap.min.js'}
