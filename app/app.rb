@@ -62,7 +62,7 @@ module EPUBSearcher
       begin
         db.select(
           :table => :Books,
-          :query => query_words,
+          :query => h(query_words),
           :match_columns => 'author,title,main_text',
           :output_columns => 'author,title,snippet_html(main_text)',
           :limit => -1,
