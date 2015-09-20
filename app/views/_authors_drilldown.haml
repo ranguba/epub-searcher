@@ -2,7 +2,7 @@
   %ul.author-drilldowns
     - @drilldowns.first.items.each do |author_drilldown|
       -# TODO: Use filter
-      %a{:href => "?q=#{[@query_words, author_drilldown['_key']].compact.uniq.join('+')}"}
+      %a{:href => "/?q=#{[@query_words, author_drilldown['_key']].compact.uniq.join('+')}"}
         %li
           #{author_drilldown['_key']}
           %span= author_drilldown['_nsubrecs']
