@@ -12,8 +12,7 @@ module EPUBSearcher
     attr_reader :local_path
 
     def initialize(uri)
-      scheme = URI(uri).scheme
-      if !scheme || scheme == 'file'
+      if File.file? uri
         @local_path = uri
       else
         @local_path = get_remote_epub_file(uri)
