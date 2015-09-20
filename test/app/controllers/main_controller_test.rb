@@ -41,6 +41,14 @@ class MainControllerTest < Test::Unit::TestCase
     assert_equal '<', find('form input[type="search"]').value
   end
 
+  def test_search_word_in_result_page
+    omit_on_travis
+
+    visit "/?q=%3C"
+
+    assert_match /</, find('h1').text
+  end
+
   def test_get_books
     omit_on_travis
 
