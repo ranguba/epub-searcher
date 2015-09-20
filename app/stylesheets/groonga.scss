@@ -59,7 +59,7 @@ ul.author-drilldowns {
 
   li {
     @extend .list-group-item;
-    float: left;
+    @extend .pull-left;
   }
 
   span {
