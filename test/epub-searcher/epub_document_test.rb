@@ -119,6 +119,8 @@ class TestEPUBDocument < Test::Unit::TestCase
       remove_temporary_directory
       EPUBSearcher::EPUBFile.temporary_local_dir = temporary_dir_path
       @document = EPUBSearcher::EPUBDocument.open(@url)
+
+      FileUtils.touch File.join(temporary_dir_path, '日本語.epub')
     end
 
     def teardown
@@ -133,6 +135,14 @@ class TestEPUBDocument < Test::Unit::TestCase
     def test_file_path
       expected_path = File.join(temporary_dir_path, File.basename(@url))
       assert_equal_file_path(expected_path, @document)
+    end
+
+    def test_file_path_with_japanese_characters
+      path = File.join(temporary_dir_path, '日本語.epub')
+      expected_path = path
+      assert_nothing_raised do
+        EPUBSearcher::EPUBFile.new(path)
+      end
     end
 
     def test_remote_file
