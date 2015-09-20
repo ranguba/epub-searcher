@@ -61,4 +61,10 @@ ul.author-drilldowns {
     @extend .list-group-item;
     float: left;
   }
+
+  span {
+    @extend .badge;
+    font-size: smaller;
+    margin-left: 0.5em;
+  }
 }
