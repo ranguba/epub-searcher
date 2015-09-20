@@ -8,7 +8,7 @@ EPUBSearcher::App.controllers do
     if right_query
       results = search_from_groonga(@query_words)
       @results = results.records
-      @drilldowns = results.drilldowns
+      @drilldowns = results.drilldowns unless results.drilldowns.empty?
       @hits = results.n_hits
     else
       @drilldowns = author_drilldowns_from_groonga.drilldowns
