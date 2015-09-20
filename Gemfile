@@ -13,6 +13,8 @@ gem 'padrino', '0.12.5'
 
 gem 'dotenv'
 
+gem 'puma'
+
 group :test do
   gem 'test-unit'
   gem 'mocha'
@@ -24,5 +26,4 @@ end
 group :development do
   gem 'droonga-engine'
   gem 'foreman'
-  gem 'puma'
 end
