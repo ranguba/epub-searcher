@@ -1,5 +1,5 @@
 ja:
-  search_results: "%{query_words}の検索結果（%{hits}）"
+  search_results: "「%{query_words}」の検索結果（%{hits}）"
   form_search:
     button: 検索
   books:
