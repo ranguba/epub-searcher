@@ -18,5 +18,9 @@
           %li{:class => 'nav'}
             = link_to 'Books', url_for(:books), :class => '', :title => 'Registered books'
     = yield
+    %footer
+      %ul
+        %li= link_to 'Ranguba Project', 'http://ranguba.org/'
+        %li= link_to 'GitHub Repo', 'https://github.com/ranguba/epub-searcher'
     %script{:src => '/components/jquery/dist/jquery.min.js'}
     %script{:src => '/components/bootstrap-sass/assets/javascripts/bootstrap.min.js'}
