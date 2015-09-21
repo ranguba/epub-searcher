@@ -4,6 +4,10 @@ header {
   @extend .navbar-default;
 }
 
+.filtered-by {
+  @extend .text-info
+}
+
 form {
   margin-top: 1em;
   margin-bottom: 1em;
