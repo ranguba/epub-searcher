@@ -4,5 +4,5 @@
       -# TODO: Use filter
       %a{:href => "/?q=#{[@query_words, author_drilldown['_key']].compact.uniq.join('+')}"}
         %li
-          #{author_drilldown['_key']}
+          = author_drilldown['_key']
           %span= author_drilldown['_nsubrecs']
