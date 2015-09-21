@@ -5,6 +5,7 @@
 
   %div{:class => 'page-header'}
     %h1= t'search_results', query_words: @query_words, hits: @hits if @results
+    %p{:class => 'filtered-by'}= t 'filtered_by_authors', authors: @authors.join(',') unless @authors.empty?
 
   = partial 'form_search'
 

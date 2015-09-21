@@ -1,5 +1,6 @@
 ja:
   search_results: "「%{query_words}」の検索結果（%{hits}）"
+  filtered_by_authors: "「%{authors}」で絞り込み"
   form_search:
     button: 検索
   books:

@@ -1,5 +1,6 @@
 en:
   search_results: "Search results for \"%{query_words}\"(%{hits})"
+  filtered_by_authors: "Filtered by \"%{authors}\""
   form_search:
     button: Search
   books:
