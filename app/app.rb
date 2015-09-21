@@ -58,9 +58,9 @@ module EPUBSearcher
     #   end
     #
 
-    def search_from_groonga(query_words)
+    def search_from_groonga(query_words, options = {})
       begin
-        db.select(
+        params = {
           :table => :Books,
           :query => query_words,
           :match_columns => 'author,title,main_text',
@@ -69,7 +69,12 @@ module EPUBSearcher
           :drilldown => 'author',
           :drilldown_output_columns => '_key,_nsubrecs',
           :drilldown_limit => -1
-        )
+        }
+        unless options[:authors].empty?
+          params[:query] = (params[:query] ? params[:query] + ' + (' : '(') +
+                           options[:authors].join(' OR ') + ')'
+        end
+        db.select(params)
       ensure
         db.close
       end
