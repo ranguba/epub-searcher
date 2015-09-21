@@ -29,7 +29,25 @@ See [Droonga documentation][] for details.
     $ npm install
     $ npm run bower
 
-### 4. Run web and app server ###
+### 4. Configure application ###
+
+Make `.env.production` file with content below:
+
+    host=droonga0
+    http_server_port=10041
+
+These are definition of environment variables.
+
+Here `droonga0` is the hostname of server which Droonga HTTP Server is running. Ensure that
+
+* you can resolve the hostname to IP address by DNS, `/etc/hosts` or so on in environment EPUB Searcher was installed. Writing IP address as-is is also OK(e.g. `host=10.240.26.26`).
+* Droonga HTTP Server binds the IP address resolved from the hostname. Note that it might not be a global IP address, but the one of private network. If EPUB Searcher cannot connect to Droonga, confirm it.
+
+`http_server_port` is the port number that Droonga HTTP Server is listening. If you installed Droonga without explicit configuration, it will `10041` which is the default port of Droonga HTTP Server.
+
+Other lines are written in `.env.development` and `.env.test` in this repository? Don't warry, they're required to run Droonga in development/test environment. Now you have running Droonga in production, those are no longer required.
+
+### 5. Run web and app server ###
 
 EPUB Searcher is a Rack application. There's serveral way to run Rack applications behind web servers, such as Nginx x Puma. It's up to you.
 
