@@ -3,10 +3,10 @@ EPUBSearcher::App.controllers do
   layout :layout
   get :index do
     @query_words = params[:q]
-
-    right_query = @query_words && !@query_words.empty?
+    @authors = (params[:authors] || []).uniq
+    right_query = (@query_words && !@query_words.empty? or !@authors.empty?)
     if right_query
-      results = search_from_groonga(@query_words)
+      results = search_from_groonga(@query_words, :authors => @authors)
       @results = results.records
       @drilldowns = results.drilldowns unless results.drilldowns.empty?
       @hits = results.n_hits.to_i
