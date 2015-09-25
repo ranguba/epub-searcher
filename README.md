@@ -25,7 +25,7 @@ See [Droonga documentation][] for details.
 
     $ git clone https://github.com/ranguba/epub-searcher.git path/to/docroot
     $ cd path/to/docroot
-    $ bundle install --path=vendor/bundle
+    $ bundle install --path=vendor/gems
     $ npm install
     $ npm run bower
 
