@@ -35,7 +35,7 @@ module EPUBSearcher
     def extract_main_text
       main_text = ''
       @epub_book.each_page_on_spine do |item|
-        content = Nokogiri::HTML(item.read)
+        content = item.content_document.nokogiri
         main_text << content.at('body').text
       end
       return main_text
