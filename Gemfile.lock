@@ -187,7 +187,6 @@ DEPENDENCIES
   groonga-client
   haml
   mocha
-  nokogiri
   padrino (= 0.13.1)
   puma
   rack-test
