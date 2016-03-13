@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'epub-parser'
-gem 'zipruby'
 gem 'nokogiri'
 gem 'rake'
 gem 'groonga-client'
