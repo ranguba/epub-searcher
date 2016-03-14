@@ -19,12 +19,13 @@ module EPUBSearcher
     end
 
     def extract_unique_identifier
-      @epub_book.unique_identifier.content
+      @epub_book.unique_identifier&.content
     end
 
     def extract_modified
-      modified_string = @epub_book.modified.content
-      Time.parse(modified_string).to_f
+      modified_string = @epub_book.modified&.content
+      modified_string.nil? ? nil :
+        Time.parse(modified_string).to_f
     end
 
     def extract_contributors
