@@ -1,3 +1,4 @@
+require 'time'
 require 'epub/parser'
 require 'epub-searcher/epub-file'
 
@@ -15,6 +16,15 @@ module EPUBSearcher
 
     def initialize(epub_book)
       @epub_book = epub_book
+    end
+
+    def extract_unique_identifier
+      @epub_book.unique_identifier.content
+    end
+
+    def extract_modified
+      modified_string = @epub_book.modified.content
+      Time.parse(modified_string).to_f
     end
 
     def extract_contributors
