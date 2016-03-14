@@ -10,6 +10,14 @@ require 'epub-searcher/epub-document'
 
 class TestEPUBDocument < Test::Unit::TestCase
 
+  def assert_equal_unique_identifier(expected, document)
+    assert_equal(expected, document.extract_unique_identifier)
+  end
+
+  def assert_equal_modified(expected, document)
+    assert_equal(expected, document.extract_modified)
+  end
+
   def assert_equal_contributors(expected, document)
     assert_equal(expected, document.extract_contributors)
   end
@@ -79,6 +87,17 @@ class TestEPUBDocument < Test::Unit::TestCase
     def setup
       epub_book = EPUB::Parser.parse(fixture_path('empty_contributors_single_spine.epub'))
       @document = EPUBSearcher::EPUBDocument.new(epub_book)
+    end
+
+    def test_unique_identifier
+      assert_equal_unique_identifier('00004257', @document)
+    end
+
+    def test_modified
+      epub_book = EPUB::Parser.parse(fixture_path('multi_contributors_multi_spine.epub'))
+      document = EPUBSearcher::EPUBDocument.new(epub_book)
+      expected_time = Time.parse('2013-06-20T02:44:04Z')
+      assert_equal_modified(expected_time.to_f, document)
     end
 
     def test_creators
