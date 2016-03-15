@@ -55,6 +55,8 @@ module EPUBSearcher
           "main_text" => epub_document.extract_main_text,
           "title" => epub_document.extract_title,
           "file_path" => epub_document.file_path,
+          "unique_identifier" => epub_document.extract_unique_identifier,
+          "modified" => epub_document.extract_modified,
         }
       end
       command << records.to_json
@@ -68,6 +70,8 @@ column_create Books author COLUMN_SCALAR ShortText
 column_create Books main_text COLUMN_SCALAR LongText
 column_create Books title COLUMN_SCALAR ShortText
 column_create Books file_path COLUMN_SCALAR ShortText
+column_create Books unique_identifier COLUMN_SCALAR ShortText
+column_create Books modified COLUMN_SCALAR Time
 table_create Terms TABLE_PAT_KEY ShortText --default_tokenizer TokenBigram --normalizer NormalizerAuto
 column_create Terms entries_title_index COLUMN_INDEX|WITH_POSITION Books title
 column_create Terms entries_main_text_index COLUMN_INDEX|WITH_POSITION Books main_text

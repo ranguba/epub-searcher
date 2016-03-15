@@ -49,7 +49,7 @@ module EPUBSearcher
     private
     def groonga_setup_db_books
       @client.table_create(:name => :Books, :flags => 'TABLE_NO_KEY')
-      ['author', 'file_path', 'title'].each do |column|
+      ['author', 'file_path', 'title', 'unique_identifier'].each do |column|
         @client.column_create(
           :table => :Books,
           :name => column,
@@ -62,6 +62,12 @@ module EPUBSearcher
         :name => 'main_text',
         :flags => 'COLUMN_SCALAR',
         :type => :LongText,
+      )
+      @client.column_create(
+        :table => :Books,
+        :name => 'modified',
+        :flags => 'COLUMN_SCALAR',
+        :type => :Time,
       )
     end
 
@@ -91,6 +97,8 @@ module EPUBSearcher
           :main_text => epub_document.extract_main_text,
           :title => epub_document.extract_title,
           :file_path => epub_document.file_path,
+          :unique_identifier => epub_document.extract_unique_identifier,
+          :modified => epub_document.extract_modified,
         }
       end
       @client.load(:table => :Books, :values => records.to_json)
