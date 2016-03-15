@@ -26,6 +26,8 @@ class TestRemoteDatabase < Test::Unit::TestCase
         {:table=>:Books, :name=>'file_path', :flags=>'COLUMN_SCALAR', :type=>:ShortText},
         {:table=>:Books, :name=>'title', :flags=>'COLUMN_SCALAR', :type=>:ShortText},
         {:table=>:Books, :name=>'main_text', :flags=>'COLUMN_SCALAR', :type=>:LongText},
+        {:table=>:Books, :name=>'unique_identifier', :flags=>'COLUMN_SCALAR', :type=>:ShortText},
+        {:table=>:Books, :name=>'modified', :flags=>'COLUMN_SCALAR', :type=>:Time},
         {:table=>:Terms, :name=>'entries_author_index', :flags=>'COLUMN_INDEX|WITH_POSITION', :type=>:Books, :source=>'author'},
         {:table=>:Terms, :name=>'entries_main_text_index', :flags=>'COLUMN_INDEX|WITH_POSITION', :type=>:Books, :source=>'main_text'},
         {:table=>:Terms, :name=>'entries_title_index', :flags=>'COLUMN_INDEX|WITH_POSITION', :type=>:Books, :source=>'title'},
