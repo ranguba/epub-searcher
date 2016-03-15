@@ -140,7 +140,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (11.1.0)
+    rake (11.1.1)
     rchardet (1.6.1)
     rroonga (6.0.0)
       archive-zip
