@@ -5,6 +5,8 @@ EPUB Searcher
 
 A EPUB search Web application based on droonga.
 
+**CAUTION**: EPUB Searcher dropped support for Ruby < 2.3. If you're using lesser version of Ruby, inform us and then we recover Ruby 2.1 and 2.2 support.
+
 Demo site
 ---------
 
