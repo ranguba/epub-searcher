@@ -7,7 +7,7 @@ gem 'groonga-client'
 gem 'sass'
 gem 'haml'
 
-gem 'padrino', '0.13.1'
+gem 'padrino', '0.13.2'
 
 gem 'dotenv'
 
