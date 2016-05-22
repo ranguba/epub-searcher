@@ -47,15 +47,6 @@ form.form_search {
   }
 }
 
-form.form_delete_book {
-  text-align: right;
-
-  input[type="submit"] {
-    @extend .btn;
-    @extend .btn-danger;
-  }
-}
-
 ul.author-drilldowns {
   @extend .list-group;
   @extend .clearfix;
