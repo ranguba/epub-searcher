@@ -5,5 +5,3 @@ en:
     button: Search
   books:
     title: Registered books
-  form_delete_book:
-    button: Delete
