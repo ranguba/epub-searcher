@@ -108,18 +108,6 @@ module EPUBSearcher
       end
     end
 
-    def delete_from_groonga(id)
-      begin
-        params = {
-          :table => :Books,
-          :id => id
-        }
-        db.delete(params)
-      ensure
-        db.close
-      end
-    end
-
     private
     def db
       @db ||= RemoteDatabase.new(default_db_options)
