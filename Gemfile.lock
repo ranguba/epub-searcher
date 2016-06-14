@@ -144,9 +144,9 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (11.1.2)
+    rake (11.2.2)
     rchardet (1.6.1)
-    rroonga (6.0.2)
+    rroonga (6.0.4)
       archive-zip
       groonga-client (>= 0.0.3)
       json
@@ -165,7 +165,7 @@ GEM
       tilt (>= 1.3, < 3)
     slop (3.6.0)
     sys-proctable (1.0.0)
-    test-unit (3.1.9)
+    test-unit (3.2.0)
       power_assert
     test-unit-capybara (1.0.5)
       capybara (>= 2.1.0)
