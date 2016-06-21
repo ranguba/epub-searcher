@@ -68,7 +68,7 @@ GEM
     grn2drn (1.0.5)
       groonga-command-parser
       json
-    groonga-client (0.2.5)
+    groonga-client (0.2.6)
       gqtp (>= 1.0.4)
       groonga-command (>= 1.2.0)
       hashie
