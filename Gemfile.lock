@@ -96,7 +96,7 @@ GEM
     multipart-post (2.0.0)
     mustermann19 (0.4.4)
       enumerable-lazy
-    nokogiri (1.7.0)
+    nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     padrino (0.13.2)
       padrino-admin (= 0.13.2)
