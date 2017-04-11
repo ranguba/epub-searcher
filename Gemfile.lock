@@ -81,7 +81,7 @@ GEM
     hashie (3.5.5)
     i18n (0.8.1)
     io-like (0.3.0)
-    json (2.0.3)
+    json (2.0.4)
     json-stream (0.2.1)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
