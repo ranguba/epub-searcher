@@ -134,11 +134,11 @@ GEM
       padrino-core (= 0.13.2)
     padrino-support (0.13.2)
       activesupport (>= 3.1)
-    pkg-config (1.2.0)
+    pkg-config (1.2.3)
     power_assert (1.0.2)
     public_suffix (2.0.5)
     puma (3.8.2)
-    rack (1.6.7)
+    rack (1.6.8)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -150,7 +150,7 @@ GEM
       groonga-client (>= 0.0.3)
       json
       pkg-config
-    sass (3.4.23)
+    sass (3.4.24)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
@@ -165,7 +165,7 @@ GEM
     slop (3.6.0)
     sys-proctable (1.1.4)
     temple (0.8.0)
-    test-unit (3.2.3)
+    test-unit (3.2.4)
       power_assert
     test-unit-capybara (1.0.5)
       capybara (>= 2.1.0)
@@ -176,7 +176,7 @@ GEM
     tilt (2.0.7)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    xpath (2.0.0)
+    xpath (2.1.0)
       nokogiri (~> 1.3)
     yajl-ruby (1.3.0)
 
