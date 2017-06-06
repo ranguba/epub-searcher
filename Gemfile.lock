@@ -80,7 +80,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashie (3.5.5)
-    i18n (0.8.1)
+    i18n (0.8.4)
     io-like (0.3.0)
     json (2.1.0)
     json-stream (0.2.1)
@@ -88,7 +88,7 @@ GEM
       mime-types (>= 1.16, < 4)
     metaclass (0.0.4)
     mime-types (2.99.3)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.2.0)
     minitest (5.10.2)
     mocha (1.2.1)
       metaclass (~> 0.0.1)
@@ -97,8 +97,8 @@ GEM
     multipart-post (2.0.0)
     mustermann19 (0.4.4)
       enumerable-lazy
-    nokogiri (1.7.2)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
     padrino (0.13.2)
       padrino-admin (= 0.13.2)
       padrino-cache (= 0.13.2)
@@ -137,7 +137,7 @@ GEM
     pkg-config (1.2.3)
     power_assert (1.0.2)
     public_suffix (2.0.5)
-    puma (3.8.2)
+    puma (3.9.1)
     rack (1.6.8)
     rack-protection (1.5.3)
       rack
