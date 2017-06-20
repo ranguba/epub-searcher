@@ -10,7 +10,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     archive-zip (0.9.0)
       io-like (~> 0.3.0)
-    capybara (2.14.2)
+    capybara (2.14.3)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
