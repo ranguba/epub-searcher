@@ -15,7 +15,7 @@ gem 'puma'
 
 group :test do
   gem 'test-unit'
-  gem 'mocha'
+  gem 'mocha', '~> 1.1.0'
   gem 'shoulda'
   gem 'rack-test', :require => 'rack/test'
   gem 'test-unit-capybara', :require => 'test/unit/capybara'

@@ -94,7 +94,7 @@ GEM
     mini_mime (0.1.4)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
-    mocha (1.3.0)
+    mocha (1.1.0)
       metaclass (~> 0.0.1)
     moneta (0.7.20)
     msgpack (1.1.0)
@@ -204,7 +204,7 @@ DEPENDENCIES
   foreman
   groonga-client
   haml
-  mocha
+  mocha (~> 1.1.0)
   padrino (= 0.13.2)
   puma
   rack-test
